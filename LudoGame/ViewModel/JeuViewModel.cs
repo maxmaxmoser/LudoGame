@@ -12,12 +12,23 @@ using System.Windows.Input;
 
 namespace LudoGame.ViewModel
 {
-    class JeuViewModel : INotifyPropertyChanged
+    class JeuViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private NavigationViewModel navigationViewModel;
+        public NavigationViewModel NavigationViewModel 
+        { 
+            get => navigationViewModel;
+            set
+            {
+                if(value != navigationViewModel)
+                {
+                    navigationViewModel = value;
+                    NotifyPropertyChanged();
+                }
+            }  
+        }
 
         private ObservableCollection<Jeu> lesJeux;
-
         public ObservableCollection<Jeu> LesJeux
         {
             get => lesJeux;
@@ -47,9 +58,9 @@ namespace LudoGame.ViewModel
             }
         }
 
-       
-        public JeuViewModel()
+        public JeuViewModel(NavigationViewModel navigationViewModel)
         {
+            this.NavigationViewModel = navigationViewModel;
             LesJeux = new ObservableCollection<Jeu>();
 
             LesJeux.Add(new Jeu("Unlock", 1, 6, 10, 32.25, "/Pictures/Board_picture_dummy.png"));
@@ -57,16 +68,10 @@ namespace LudoGame.ViewModel
             LesJeux.Add(new Jeu("Zombicide : saison 1", 1, 5, 10, 80, "/Pictures/Board_picture_dummy.png"));
         }
 
-        private void NotifyPropertyChanged([CallerMemberName] string propertyname = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
-        }
-
         #region Commandes interactives avec la vue
 
         // Suppression d'un jeu de la liste
         private ICommand supprimerJeu;
-
         public ICommand SupprimerJeu
         {
             get
@@ -78,6 +83,34 @@ namespace LudoGame.ViewModel
                 return supprimerJeu;
             }
         }
+
+        private ICommand goToMainCommand;
+        public ICommand GoToMain
+        {
+            get
+            {
+                if (goToMainCommand == null)
+                {
+                    goToMainCommand = new RelayCommand<Object>((obj) => NavigationViewModel.GoToMain());
+                }
+                return goToMainCommand;
+            }
+        }
+
+        private ICommand goToEditionCommand;
+        public ICommand GoToEdition
+        {
+            get
+            {
+                if(goToEditionCommand == null)
+                {
+                    goToEditionCommand = new RelayCommand<Object>((obj) => NavigationViewModel.GoToEdition());
+                }
+                return goToEditionCommand;
+            }
+        }
+
+
 
         /* Ouverture d'un pop up de création
         private ICommand afficherAjout;
