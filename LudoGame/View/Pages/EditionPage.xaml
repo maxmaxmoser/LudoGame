@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid>
-            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="Revenir au menu" Command="{Binding GoToMain}"/>
+            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding JeuSelectionne.Nom}" Command="{Binding GoToMain}"/>
         </Grid>
     </Grid>
 </Page>

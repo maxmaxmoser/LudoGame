@@ -60,6 +60,7 @@
       <DependentUpon>Uc_BoardGamesDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\EditionViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="View\Pages\EditionPage.xaml.cs">
       <DependentUpon>EditionPage.xaml</DependentUpon>

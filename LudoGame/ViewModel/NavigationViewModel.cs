@@ -26,6 +26,9 @@ namespace LudoGame.ViewModel
             }
         }
 
+        private List<BaseViewModel> lesViewModels;
+        public List<BaseViewModel> LesViewModels { get; set; }
+
         private  Page pageCourante;
         public Page PageCourante
         {
@@ -41,26 +44,18 @@ namespace LudoGame.ViewModel
             }
         }
 
-        
-
-        public static int nb = 0;
-
-        private int iD;
-        public int ID { get => iD; set => iD = value; }
-
-
         public NavigationViewModel()
         {
-            ID = nb;
-            nb++;
-            JeuViewModel jeuViewModel = new JeuViewModel(this);
+            LesViewModels = new List<BaseViewModel>();
+            LesViewModels.Add(new JeuViewModel(this));
+            LesViewModels.Add(new EditionViewModel(this));
 
             LesPages = new ObservableCollection<Page>();
 
-            AddPageToNavigation(new MainPage(), jeuViewModel);
-            AddPageToNavigation(new EditionPage(), jeuViewModel);
+            AddPageToNavigation(new MainPage(), LesViewModels[(int)EViewModels.JeuViewModel]);
+            AddPageToNavigation(new EditionPage(), LesViewModels[(int)EViewModels.EditionViewModel]);
 
-            PageCourante = LesPages[(int)NomsPage.MainPage];
+            PageCourante = LesPages[(int)ENomsPage.MainPage];
         }
 
         private void AddPageToNavigation(Page page, BaseViewModel dataContext)
@@ -71,18 +66,24 @@ namespace LudoGame.ViewModel
 
         public void GoToMain()
         {
-            PageCourante = LesPages[(int)NomsPage.MainPage];
+            PageCourante = LesPages[(int)ENomsPage.MainPage];
         }
 
         public  void GoToEdition()
         {
-            PageCourante = LesPages[(int)NomsPage.EditionPage];
+            PageCourante = LesPages[(int)ENomsPage.EditionPage];
         }
     }
 
-    enum NomsPage
+    enum ENomsPage
     {
         MainPage = 0,
         EditionPage = 1
+    };
+
+    enum EViewModels
+    {
+        JeuViewModel = 0,
+        EditionViewModel = 1
     };
 }

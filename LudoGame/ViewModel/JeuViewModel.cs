@@ -84,19 +84,6 @@ namespace LudoGame.ViewModel
             }
         }
 
-        private ICommand goToMainCommand;
-        public ICommand GoToMain
-        {
-            get
-            {
-                if (goToMainCommand == null)
-                {
-                    goToMainCommand = new RelayCommand<Object>((obj) => NavigationViewModel.GoToMain());
-                }
-                return goToMainCommand;
-            }
-        }
-
         private ICommand goToEditionCommand;
         public ICommand GoToEdition
         {
@@ -104,34 +91,19 @@ namespace LudoGame.ViewModel
             {
                 if(goToEditionCommand == null)
                 {
-                    goToEditionCommand = new RelayCommand<Object>((obj) => NavigationViewModel.GoToEdition());
+                    goToEditionCommand = new RelayCommand<Object>((obj) => 
+                    {
+                        if(JeuSelectionne != null)
+                        { 
+                            EditionViewModel editionViewModel = (EditionViewModel)NavigationViewModel.LesViewModels[(int)EViewModels.EditionViewModel];
+                            editionViewModel.JeuSelectionne = this.JeuSelectionne;
+                            NavigationViewModel.GoToEdition();
+                        }
+                    });
                 }
                 return goToEditionCommand;
             }
         }
-
-
-
-        /* Ouverture d'un pop up de création
-        private ICommand afficherAjout;
-
-        public ICommand AfficherAjout
-        {
-            get
-            {
-                if(afficherAjout == null)
-                {
-                    afficherAjout = new RelayCommand<Object>((obj) =>
-                    {
-                        PopUpAjoutJeu test = new PopUpAjoutJeu();
-                        winTest.Show();
-                    }); 
-                }
-                return afficherEdition;
-            }
-        }
-        */
-
         #endregion
     }
 }
