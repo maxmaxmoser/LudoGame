@@ -55,15 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\ObjectExistToBooleanConverter.cs" />
     <Compile Include="Model\Jeu.cs" />
     <Compile Include="User_Controls\Uc_BoardGamesDisplay.xaml.cs">
       <DependentUpon>Uc_BoardGamesDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\EditionViewModel.cs" />
+    <Compile Include="ViewModel\DetailsViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
-    <Compile Include="View\Pages\EditionPage.xaml.cs">
-      <DependentUpon>EditionPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\DetailsPage.xaml.cs">
+      <DependentUpon>DetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -86,7 +87,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\EditionPage.xaml">
+    <Page Include="View\Pages\DetailsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

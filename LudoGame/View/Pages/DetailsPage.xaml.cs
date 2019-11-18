@@ -18,9 +18,9 @@ namespace LudoGame.View.Pages
     /// <summary>
     /// Logique d'interaction pour EditionPage.xaml
     /// </summary>
-    public partial class EditionPage : Page
+    public partial class DetailsPage : Page
     {
-        public EditionPage()
+        public DetailsPage()
         {
             InitializeComponent();
         }

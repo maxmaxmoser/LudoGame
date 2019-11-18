@@ -7,6 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="275" d:DesignWidth="200"
              x:Name="ucDisplayNoardGames">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,17 +28,20 @@
         </Grid.ColumnDefinitions>
 
         <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Source="{Binding ImageJeu, ElementName=ucDisplayNoardGames}" Height="200" Width="200"/>
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Text="{Binding NomJeu, ElementName=ucDisplayNoardGames}" FontWeight="Bold" FontSize="25" />
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding NomJeu, ElementName=ucDisplayNoardGames}" FontWeight="Bold" FontSize="25" />
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
-            <TextBlock Grid.Row="2" Text="{Binding NbJoueursMin, ElementName=ucDisplayNoardGames}" FontSize="15"/>
-            <TextBlock Text="-" FontSize="15"/>
-            <TextBlock Grid.Row="2" Text="{Binding NbJoueursMax, ElementName=ucDisplayNoardGames}" FontSize="15"/>
-            <TextBlock Text=" Joueurs" FontSize="15"/>
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} à {1} joueurs">
+                        <Binding ElementName="ucDisplayNoardGames" Path="NbJoueursMin" />
+                        <Binding ElementName="ucDisplayNoardGames" Path="NbJoueursMax" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding AgeMin, ElementName=ucDisplayNoardGames}" FontSize="15"/>
-            <TextBlock Text=" +" FontSize="15"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding AgeMin, ElementName=ucDisplayNoardGames, StringFormat='{}\{0} +'}"/>
         </StackPanel>
     </Grid>
 </UserControl>

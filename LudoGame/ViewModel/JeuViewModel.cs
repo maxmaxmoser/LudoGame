@@ -60,6 +60,7 @@ namespace LudoGame.ViewModel
 
         public JeuViewModel(NavigationViewModel navigationViewModel)
         {
+
             this.NavigationViewModel = navigationViewModel;
             LesJeux = new ObservableCollection<Jeu>();
 
@@ -84,24 +85,22 @@ namespace LudoGame.ViewModel
             }
         }
 
-        private ICommand goToEditionCommand;
-        public ICommand GoToEdition
+        private ICommand goToDetailsCommand;
+        public ICommand GoToDetails
         {
             get
             {
-                if(goToEditionCommand == null)
+                if(goToDetailsCommand == null)
                 {
-                    goToEditionCommand = new RelayCommand<Object>((obj) => 
+                    goToDetailsCommand = new RelayCommand<Object>((obj) => 
                     {
                         if(JeuSelectionne != null)
                         { 
-                            EditionViewModel editionViewModel = (EditionViewModel)NavigationViewModel.LesViewModels[(int)EViewModels.EditionViewModel];
-                            editionViewModel.JeuSelectionne = this.JeuSelectionne;
-                            NavigationViewModel.GoToEdition();
+                            NavigationViewModel.GoToDetails(JeuSelectionne);
                         }
                     });
                 }
-                return goToEditionCommand;
+                return goToDetailsCommand;
             }
         }
         #endregion

@@ -11,6 +11,7 @@ namespace LudoGame.Model
     class Jeu : INotifyPropertyChanged
     {
         private string nom;
+        private string description;
         private int nbJoueursMin;
         private int nbJoueursMax;
         private int ageMin;
@@ -26,6 +27,17 @@ namespace LudoGame.Model
                 NotifyPropertyChanged();
             }
         }
+
+        public string Description
+        {
+            get => description;
+            set
+            {
+                description = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public int NbJoueursMin
         {
             get => nbJoueursMin;
@@ -35,6 +47,7 @@ namespace LudoGame.Model
                 NotifyPropertyChanged();
             }
         }
+
         public int NbJoueursMax
         {
             get => nbJoueursMax;
@@ -44,6 +57,7 @@ namespace LudoGame.Model
                 NotifyPropertyChanged();
             }
         }
+
         public int AgeMin
         {
             get => ageMin;

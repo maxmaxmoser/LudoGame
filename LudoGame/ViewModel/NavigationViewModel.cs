@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using LudoGame.Model;
 
 namespace LudoGame.ViewModel
 {
@@ -48,12 +49,12 @@ namespace LudoGame.ViewModel
         {
             LesViewModels = new List<BaseViewModel>();
             LesViewModels.Add(new JeuViewModel(this));
-            LesViewModels.Add(new EditionViewModel(this));
+            LesViewModels.Add(new DetailsViewModel(this));
 
             LesPages = new ObservableCollection<Page>();
 
             AddPageToNavigation(new MainPage(), LesViewModels[(int)EViewModels.JeuViewModel]);
-            AddPageToNavigation(new EditionPage(), LesViewModels[(int)EViewModels.EditionViewModel]);
+            AddPageToNavigation(new DetailsPage(), LesViewModels[(int)EViewModels.EditionViewModel]);
 
             PageCourante = LesPages[(int)ENomsPage.MainPage];
         }
@@ -69,8 +70,10 @@ namespace LudoGame.ViewModel
             PageCourante = LesPages[(int)ENomsPage.MainPage];
         }
 
-        public  void GoToEdition()
+        public  void GoToDetails(Jeu jeuSelectionne)
         {
+            DetailsViewModel editionViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EditionViewModel];
+            editionViewModel.JeuSelectionne = jeuSelectionne;
             PageCourante = LesPages[(int)ENomsPage.EditionPage];
         }
     }
