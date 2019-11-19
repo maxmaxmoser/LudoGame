@@ -90,7 +90,7 @@ namespace LudoGame.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Jeu(string nom = "", int nbJoueurmin = 0, int nbJoueursMax = 0, int ageMin = 0, double prix = 0, string description = "", string cheminImage = "")
+        public Jeu(string nom = "", int nbJoueurmin = 0, int nbJoueursMax = 0, int ageMin = 0, double prix = 0, string description = "", string cheminImage = "/Pictures/Board_picture_dummy.png")
         {
             this.Nom = nom;
             this.NbJoueursMin = nbJoueurmin;

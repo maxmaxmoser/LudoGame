@@ -1,4 +1,4 @@
-﻿<Page x:Class="LudoGame.View.Pages.DetailsPage"
+﻿<Page x:Class="LudoGame.View.Pages.AddGamePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,13 @@
       xmlns:local="clr-namespace:LudoGame.View.Pages"
       xmlns:uc="clr-namespace:LudoGame.User_Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
-      Title="EditionPage">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddGamePage">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
@@ -18,15 +23,15 @@
             <uc:Uc_BoardGameAttributes Grid.Row="0" NomJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
                                        DescriptionJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
                                        NbJoueursMin="{Binding JeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding JeuSelectionne.NbJoueursMax, Mode=TwoWay}"
-                                       PickImageCommand="{Binding PickImage}"  ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
+                                       PickImageCommand="{Binding PickImage}"  ModificationEstAutorisee="True"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" x:Name="checkModifications" Grid.Row="5" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Content="Activer la modification" FontSize="20" IsChecked="{Binding ModificationEstAutorisee}" />
-                <Button Grid.Column="1" Content="Retour au menu" Command="{Binding GoToMain}" FontSize="20" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="0" Content="Ajouter le jeu" Command="{Binding AddGame}" CommandParameter="{Binding JeuSelectionne}" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="1" Content="Annuler" Command="{Binding GoToMain}" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>
     </ScrollViewer>

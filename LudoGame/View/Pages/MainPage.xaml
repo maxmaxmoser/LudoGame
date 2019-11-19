@@ -11,7 +11,12 @@
       Title="MainPage">
     <Page.Resources>
         <conv:ObjectExistToBooleanConverter x:Key="ObjectExistToBooleanConverter"/>
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
     </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -33,9 +38,9 @@
             </ListBox>
         </Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Margin="10">
-            <Button Content="Ajouter un Jeu"  FontSize="20"></Button>
-            <Button Content="Voir les détails" Command="{Binding GoToDetails}" IsEnabled="{Binding JeuSelectionne, Converter={StaticResource ObjectExistToBooleanConverter}}" FontSize="20" Margin="60,0,0,0"/>
-            <Button Content="Supprimer le jeu" Command="{Binding SupprimerJeu}" CommandParameter="{Binding JeuSelectionne}" FontSize="20" Margin="60,0,0,0"/>
+            <Button Content="Ajouter un Jeu" Command="{Binding GoToAddGame}"/>
+            <Button Content="Voir les détails" Command="{Binding GoToDetails}" CommandParameter="{Binding JeuSelectionne}" IsEnabled="{Binding JeuSelectionne, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
+            <Button Content="Supprimer le jeu" Command="{Binding SupprimerJeu}" CommandParameter="{Binding JeuSelectionne}" Margin="60,0,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -78,7 +78,7 @@ namespace LudoGame.ViewModel
         }
 
         private ICommand pickImageCommand;
-        public ICommand PickImageCommand
+        public ICommand PickImage
         {
             get
             {
@@ -96,6 +96,24 @@ namespace LudoGame.ViewModel
                     });
                 }
                 return pickImageCommand;
+            }
+        }
+
+        private ICommand addGameCommand;
+        public ICommand AddGame
+        {
+            get
+            {
+                if (addGameCommand == null)
+                {
+                    addGameCommand = new RelayCommand<Jeu>((jeu) =>
+                    {
+                        NavigationViewModel.AddGameToViewModel(jeu);
+                        NavigationViewModel.GoToMain();
+                        ModificationEstAutorisee = false;
+                    });
+                }
+                return addGameCommand;
             }
         }
     }

@@ -55,6 +55,7 @@ namespace LudoGame.ViewModel
 
             AddPageToNavigation(new MainPage(), LesViewModels[(int)EViewModels.JeuViewModel]);
             AddPageToNavigation(new DetailsPage(), LesViewModels[(int)EViewModels.EditionViewModel]);
+            AddPageToNavigation(new AddGamePage(), LesViewModels[(int)EViewModels.EditionViewModel]);
 
             PageCourante = LesPages[(int)ENomsPage.MainPage];
         }
@@ -72,16 +73,29 @@ namespace LudoGame.ViewModel
 
         public  void GoToDetails(Jeu jeuSelectionne)
         {
-            DetailsViewModel editionViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EditionViewModel];
-            editionViewModel.JeuSelectionne = jeuSelectionne;
+            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EditionViewModel];
+            detailsViewModel.JeuSelectionne = jeuSelectionne;
             PageCourante = LesPages[(int)ENomsPage.EditionPage];
+        }
+
+        public void GoToAddGame(Jeu jeuSelectionne)
+        {
+            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EditionViewModel];
+            detailsViewModel.JeuSelectionne = jeuSelectionne;
+            PageCourante = LesPages[(int)ENomsPage.AddGamePage];
+        }
+
+        public void AddGameToViewModel(Jeu jeu)
+        {
+            ((JeuViewModel)LesViewModels[(int)EViewModels.JeuViewModel]).AddGame(jeu);
         }
     }
 
     enum ENomsPage
     {
         MainPage = 0,
-        EditionPage = 1
+        EditionPage = 1,
+        AddGamePage = 2    
     };
 
     enum EViewModels
