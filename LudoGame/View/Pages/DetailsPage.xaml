@@ -7,70 +7,27 @@
       xmlns:uc="clr-namespace:LudoGame.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="800"
-      Title="EditionPage" ShowsNavigationUI="False">
-    <Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
-    </Page.Resources>
-
+      Title="EditionPage">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Nom :" HorizontalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding JeuSelectionne.Nom}" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,10,10" IsEnabled="{Binding IsChecked, ElementName=checkModifications}"/>
-            
-            <TextBlock Grid.Row="1" Text="Image :" HorizontalAlignment="Center" />
-            <Grid  Grid.Row="1" Grid.Column="1" Margin="10,0,10,10">
+            <uc:Uc_BoardGameAttributes Grid.Row="0" NomJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
+                                       DescriptionJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
+                                       NbJoueursMin="{Binding JeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding JeuSelectionne.NbJoueursMax, Mode=TwoWay}"
+                                       PickImageCommand="{Binding PickImageCommand}"  ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
+
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding JeuSelectionne.CheminImage, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,0,0,0" IsEnabled="False" />
-                <Button Grid.Column="1" Content="..." FontSize="20" HorizontalAlignment="Stretch" Command="{Binding PickImageCommand}" IsEnabled="{Binding IsChecked, ElementName=checkModifications}" />
+                <CheckBox Grid.Column="0" x:Name="checkModifications" Grid.Row="5" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Content="Activer la modification" FontSize="20" IsChecked="{Binding ModificationEstAutorisee}" />
+                <Button Grid.Column="1" Content="Retour au menu" Command="{Binding GoToMain}" FontSize="20" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
             </Grid>
-            
-            <Border Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="#FF000000" Height="300" Width="300" HorizontalAlignment="Center" Margin="0,10,0,40">
-                <Image Grid.Row="2" Grid.ColumnSpan="2" Source="{Binding JeuSelectionne.CheminImage}" HorizontalAlignment="Center" Stretch="Fill" />
-            </Border>
-            
-            <TextBlock Grid.Row="3" Text="Description du jeu :" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding JeuSelectionne.DescriptionJeu}" TextAlignment="Left" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
-                     HorizontalScrollBarVisibility="Disabled" MinLines="4" MaxLines="4"  HorizontalAlignment="Stretch" Margin="10,0,10,10" IsEnabled="{Binding IsChecked, ElementName=checkModifications}"/>
-
-            <StackPanel  Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal" Margin="10,10,10,20" IsEnabled="{Binding IsChecked, ElementName=checkModifications}">
-                <TextBlock Text="Jouable de "/>
-                <TextBox Text="{Binding JeuSelectionne.NbJoueursMin}" Width="40"/>
-                <TextBlock Text=" à "/>
-                <TextBox Text="{Binding JeuSelectionne.NbJoueursMax}" Width="40"/>
-                <TextBlock Text=" pour un age minimum de "/>
-                <TextBox Text="{Binding JeuSelectionne.AgeMin}" Width="40" />
-                <TextBlock Text=" ans."/>
-            </StackPanel>
-
-            <CheckBox x:Name="checkModifications" Grid.Row="5" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Content="Activer la modification" FontSize="20" IsChecked="{Binding ModificationEstAutorisee}" />
-            <Button Grid.Row="5" Grid.Column="1" Content="Retour au menu" Command="{Binding GoToMain}" FontSize="20" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
         </Grid>
     </ScrollViewer>
 </Page>

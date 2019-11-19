@@ -57,6 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="Converter\ObjectExistToBooleanConverter.cs" />
     <Compile Include="Model\Jeu.cs" />
+    <Compile Include="User_Controls\Uc_BoardGameAttributes.xaml.cs">
+      <DependentUpon>Uc_BoardGameAttributes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User_Controls\Uc_BoardGamesDisplay.xaml.cs">
       <DependentUpon>Uc_BoardGamesDisplay.xaml</DependentUpon>
     </Compile>
@@ -69,6 +72,10 @@
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="User_Controls\Uc_BoardGameAttributes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

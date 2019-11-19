@@ -16,19 +16,18 @@ using System.Windows.Shapes;
 namespace LudoGame.User_Controls
 {
     /// <summary>
-    /// Logique d'interaction pour Uc_BoardGamesDisplay.xaml
+    /// Logique d'interaction pour Uc_BoardGameAttributes.xaml
     /// </summary>
-    public partial class Uc_BoardGamesDisplay : UserControl
+    public partial class Uc_BoardGameAttributes : UserControl
     {
-        public Uc_BoardGamesDisplay()
+        public Uc_BoardGameAttributes()
         {
             InitializeComponent();
         }
 
-        
         #region NomJeu DP
 
-        public string NomJeu 
+        public string NomJeu
         {
             get { return (string)GetValue(NomJeuProperty); }
             set { SetValue(NomJeuProperty, value); }
@@ -37,7 +36,22 @@ namespace LudoGame.User_Controls
         public static readonly DependencyProperty NomJeuProperty = DependencyProperty.Register(
             "NomJeu",
             typeof(string),
-            typeof(Uc_BoardGamesDisplay));
+            typeof(Uc_BoardGameAttributes));
+
+        #endregion
+
+        #region DescriptionJeu DP
+
+        public string DescriptionJeu
+        {
+            get { return (string)GetValue(DescriptionJeuProperty); }
+            set { SetValue(DescriptionJeuProperty, value); }
+        }
+
+        public static readonly DependencyProperty DescriptionJeuProperty = DependencyProperty.Register(
+            "DescriptionJeu",
+            typeof(string),
+            typeof(Uc_BoardGameAttributes));
 
         #endregion
 
@@ -52,7 +66,7 @@ namespace LudoGame.User_Controls
         public static readonly DependencyProperty NbJoueursMinProperty = DependencyProperty.Register(
             "NbJoueursMin",
             typeof(int),
-            typeof(Uc_BoardGamesDisplay));
+            typeof(Uc_BoardGameAttributes));
 
         #endregion
 
@@ -67,7 +81,7 @@ namespace LudoGame.User_Controls
         public static readonly DependencyProperty NbJoueursMaxProperty = DependencyProperty.Register(
             "NbJoueursMax",
             typeof(int),
-            typeof(Uc_BoardGamesDisplay));
+            typeof(Uc_BoardGameAttributes));
 
         #endregion
 
@@ -82,7 +96,7 @@ namespace LudoGame.User_Controls
         public static readonly DependencyProperty AgeMinProperty = DependencyProperty.Register(
             "AgeMin",
             typeof(int),
-            typeof(Uc_BoardGamesDisplay));
+            typeof(Uc_BoardGameAttributes));
 
         #endregion
 
@@ -97,7 +111,37 @@ namespace LudoGame.User_Controls
         public static readonly DependencyProperty ImageJeuProperty = DependencyProperty.Register(
             "ImageJeu",
             typeof(string),
-            typeof(Uc_BoardGamesDisplay));
+            typeof(Uc_BoardGameAttributes));
+
+        #endregion
+
+        #region PickImageCommand DP
+
+        public ICommand PickImageCommand
+        {
+            get { return (ICommand)GetValue(PickImageCommandProperty); }
+            set { SetValue(PickImageCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty PickImageCommandProperty = DependencyProperty.Register(
+            "PickImageCommand",
+            typeof(ICommand),
+            typeof(Uc_BoardGameAttributes));
+
+        #endregion
+
+        #region ModificationEstAutorisee DP
+
+        public string ModificationEstAutorisee
+        {
+            get { return (string)GetValue(ModificationEstAutoriseeProperty); }
+            set { SetValue(ModificationEstAutoriseeProperty, value); }
+        }
+
+        public static readonly DependencyProperty ModificationEstAutoriseeProperty = DependencyProperty.Register(
+            "ModificationEstAutorisee",
+            typeof(Boolean),
+            typeof(Uc_BoardGameAttributes));
 
         #endregion
     }

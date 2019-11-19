@@ -64,9 +64,9 @@ namespace LudoGame.ViewModel
             this.NavigationViewModel = navigationViewModel;
             LesJeux = new ObservableCollection<Jeu>();
 
-            LesJeux.Add(new Jeu("Unlock", 1, 6, 10, 32.25, "/Pictures/Board_picture_dummy.png"));
-            LesJeux.Add(new Jeu("Carcassone", 2, 6, 7, 70, "/Pictures/Board_picture_dummy.png"));
-            LesJeux.Add(new Jeu("Zombicide : saison 1", 1, 5, 10, 80, "/Pictures/Board_picture_dummy.png"));
+            LesJeux.Add(new Jeu("Unlock", 1, 6, 10, 32.25, cheminImage:"/Pictures/Board_picture_dummy.png"));
+            LesJeux.Add(new Jeu("Carcassone", 2, 6, 7, 70, cheminImage:"/Pictures/Board_picture_dummy.png"));
+            LesJeux.Add(new Jeu("Zombicide : saison 1", 1, 5, 10, 80, "Un jeu post apocalyptique de zombies", "/Pictures/Board_picture_dummy.png"));
         }
 
         #region Commandes interactives avec la vue
