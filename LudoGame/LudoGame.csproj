@@ -56,6 +56,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\ObjectExistToBooleanConverter.cs" />
+    <Compile Include="Model\ElementJeu.cs" />
+    <Compile Include="Model\ExtensionJeu.cs" />
     <Compile Include="Model\Jeu.cs" />
     <Compile Include="User_Controls\Uc_BoardGameAttributes.xaml.cs">
       <DependentUpon>Uc_BoardGameAttributes.xaml</DependentUpon>
@@ -69,8 +71,8 @@
     <Compile Include="View\Pages\AddGamePage.xaml.cs">
       <DependentUpon>AddGamePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\DetailsPage.xaml.cs">
-      <DependentUpon>DetailsPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\DetailsJeuPage.xaml.cs">
+      <DependentUpon>DetailsJeuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -87,7 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\JeuViewModel.cs" />
+    <Compile Include="ViewModel\ElementsJeuxViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -101,7 +103,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\DetailsPage.xaml">
+    <Page Include="View\Pages\DetailsJeuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

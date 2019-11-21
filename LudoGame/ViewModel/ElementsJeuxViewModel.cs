@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace LudoGame.ViewModel
 {
-    class JeuViewModel : BaseViewModel
+    class ElementsJeuxViewModel : BaseViewModel
     {
         private NavigationViewModel navigationViewModel;
         public NavigationViewModel NavigationViewModel 
@@ -28,50 +28,35 @@ namespace LudoGame.ViewModel
             }  
         }
 
-        private ObservableCollection<Jeu> lesJeux;
-        public ObservableCollection<Jeu> LesJeux
+        private ObservableCollection<ElementJeu> lesElementsDeJeux;
+        public ObservableCollection<ElementJeu> LesElementsDeJeux
         {
-            get => lesJeux;
+            get => lesElementsDeJeux;
 
             set
             {
-                if (value != lesJeux)
+                if (value != lesElementsDeJeux)
                 {
-                    lesJeux = value;
+                    lesElementsDeJeux = value;
                     NotifyPropertyChanged();
                 }
             }
         }
 
-        private Jeu jeuSelectionne;
-        public Jeu JeuSelectionne
-        {
-            get => jeuSelectionne;
-
-            set
-            {
-                if (value != jeuSelectionne)
-                {
-                    jeuSelectionne = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
-
-        public JeuViewModel(NavigationViewModel navigationViewModel)
+        public ElementsJeuxViewModel(NavigationViewModel navigationViewModel)
         {
 
             this.NavigationViewModel = navigationViewModel;
-            LesJeux = new ObservableCollection<Jeu>();
+            LesElementsDeJeux = new ObservableCollection<ElementJeu>();
 
             AddGame(new Jeu("Unlock", 1, 6, 10, 32.25, cheminImage:"/Pictures/Board_picture_dummy.png"));
             AddGame(new Jeu("Carcassone", 2, 6, 7, 70, cheminImage:"/Pictures/Board_picture_dummy.png"));
-            AddGame(new Jeu("Zombicide : saison 1", 1, 5, 10, 80, "Un jeu post apocalyptique de zombies", "/Pictures/Board_picture_dummy.png"));
+            AddGame(new Jeu("Smallworld", 1, 5, 10, 80, "Un jeu de conquêtes dans un univer fantastique", "/Pictures/Board_picture_dummy.png"));
         }
 
         public void AddGame(Jeu jeu)
         {
-            LesJeux.Add(jeu);
+            LesElementsDeJeux.Add(jeu);
         }
 
         #region Commandes interactives avec la vue
@@ -84,7 +69,7 @@ namespace LudoGame.ViewModel
             {
                 if (supprimerJeu == null)
                 {
-                    supprimerJeu = new RelayCommand<Jeu>((jeu) => lesJeux.Remove(jeu));
+                    supprimerJeu = new RelayCommand<ElementJeu>((elementJeu) => LesElementsDeJeux.Remove(elementJeu));
                 }
                 return supprimerJeu;
             }
@@ -97,11 +82,11 @@ namespace LudoGame.ViewModel
             {
                 if(goToDetailsCommand == null)
                 {
-                    goToDetailsCommand = new RelayCommand<Object>((obj) => 
+                    goToDetailsCommand = new RelayCommand<ElementJeu>((elementJeu) => 
                     {
-                        if(JeuSelectionne != null)
+                        if(elementJeu != null)
                         { 
-                            NavigationViewModel.GoToDetails(JeuSelectionne);
+                            NavigationViewModel.GoToDetails(elementJeu);
                         }
                     });
                 }

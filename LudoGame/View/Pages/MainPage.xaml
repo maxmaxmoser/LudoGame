@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="boardGrid">
-            <ListBox x:Name="listeDesJeux" ItemsSource="{Binding LesJeux}" SelectedItem="{Binding JeuSelectionne}">
+            <ListBox x:Name="listeDesElementsDeJeux" ItemsSource="{Binding LesElementsDeJeux}" SelectedItem="{Binding JeuSelectionne}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" MaxWidth="{Binding ActualWidth, ElementName=boardGrid}" />
@@ -39,8 +39,8 @@
         </Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Margin="10">
             <Button Content="Ajouter un Jeu" Command="{Binding GoToAddGame}"/>
-            <Button Content="Voir les détails" Command="{Binding GoToDetails}" CommandParameter="{Binding JeuSelectionne}" IsEnabled="{Binding JeuSelectionne, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
-            <Button Content="Supprimer le jeu" Command="{Binding SupprimerJeu}" CommandParameter="{Binding JeuSelectionne}" Margin="60,0,0,0"/>
+            <Button Content="Voir les détails" Command="{Binding GoToDetails}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" IsEnabled="{Binding JeuSelectionne, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
+            <Button Content="Supprimer le jeu" Command="{Binding SupprimerJeu}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" Margin="60,0,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -25,16 +25,16 @@ namespace LudoGame.ViewModel
             }
         }
 
-        private Jeu jeuSelectionne;
-        public Jeu JeuSelectionne
+        private ElementJeu elementjeuSelectionne;
+        public ElementJeu JeuSelectionne
         {
-            get => jeuSelectionne;
+            get => elementjeuSelectionne;
 
             set
             {
-                if (value != jeuSelectionne)
+                if (value != elementjeuSelectionne)
                 {
-                    jeuSelectionne = value;
+                    elementjeuSelectionne = value;
                     NotifyPropertyChanged();
                 }
             }

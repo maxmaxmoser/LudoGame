@@ -1,12 +1,8 @@
-﻿using LudoGame.View.Pages;
-using System;
+﻿using LudoGame.Model;
+using LudoGame.View.Pages;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using LudoGame.Model;
 
 namespace LudoGame.ViewModel
 {
@@ -48,16 +44,16 @@ namespace LudoGame.ViewModel
         public NavigationViewModel()
         {
             LesViewModels = new List<BaseViewModel>();
-            LesViewModels.Add(new JeuViewModel(this));
+            LesViewModels.Add(new ElementsJeuxViewModel(this));
             LesViewModels.Add(new DetailsViewModel(this));
 
             LesPages = new ObservableCollection<Page>();
 
-            AddPageToNavigation(new MainPage(), LesViewModels[(int)EViewModels.JeuViewModel]);
-            AddPageToNavigation(new DetailsPage(), LesViewModels[(int)EViewModels.EditionViewModel]);
-            AddPageToNavigation(new AddGamePage(), LesViewModels[(int)EViewModels.EditionViewModel]);
+            AddPageToNavigation(new MainPage(), LesViewModels[(int)EViewModels.JEU_VIEWMODEL]);
+            AddPageToNavigation(new DetailsJeuPage(), LesViewModels[(int)EViewModels.EDITION_VIEWMODEL]);
+            AddPageToNavigation(new AddGamePage(), LesViewModels[(int)EViewModels.EDITION_VIEWMODEL]);
 
-            PageCourante = LesPages[(int)ENomsPage.MainPage];
+            PageCourante = LesPages[(int)ENomsPage.MAIN_PAGE];
         }
 
         private void AddPageToNavigation(Page page, BaseViewModel dataContext)
@@ -68,39 +64,39 @@ namespace LudoGame.ViewModel
 
         public void GoToMain()
         {
-            PageCourante = LesPages[(int)ENomsPage.MainPage];
+            PageCourante = LesPages[(int)ENomsPage.MAIN_PAGE];
         }
 
-        public  void GoToDetails(Jeu jeuSelectionne)
+        public  void GoToDetails(ElementJeu elementJeuSelectionne)
         {
-            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EditionViewModel];
-            detailsViewModel.JeuSelectionne = jeuSelectionne;
-            PageCourante = LesPages[(int)ENomsPage.EditionPage];
+            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EDITION_VIEWMODEL];
+            detailsViewModel.JeuSelectionne = elementJeuSelectionne;
+            PageCourante = LesPages[(int)ENomsPage.DETAILS_JEU_PAGE];
         }
 
-        public void GoToAddGame(Jeu jeuSelectionne)
+        public void GoToAddGame(ElementJeu elementJeuSelectionne)
         {
-            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EditionViewModel];
-            detailsViewModel.JeuSelectionne = jeuSelectionne;
-            PageCourante = LesPages[(int)ENomsPage.AddGamePage];
+            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EDITION_VIEWMODEL];
+            detailsViewModel.JeuSelectionne = elementJeuSelectionne;
+            PageCourante = LesPages[(int)ENomsPage.ADD_GAME_PAGE];
         }
 
-        public void AddGameToViewModel(Jeu jeu)
+        public void AddGameToViewModel(Jeu elementJeuSelectionne)
         {
-            ((JeuViewModel)LesViewModels[(int)EViewModels.JeuViewModel]).AddGame(jeu);
+            ((ElementsJeuxViewModel)LesViewModels[(int)EViewModels.JEU_VIEWMODEL]).AddGame(elementJeuSelectionne);
         }
     }
 
     enum ENomsPage
     {
-        MainPage = 0,
-        EditionPage = 1,
-        AddGamePage = 2    
+        MAIN_PAGE = 0,
+        DETAILS_JEU_PAGE = 1,
+        ADD_GAME_PAGE = 2    
     };
 
     enum EViewModels
     {
-        JeuViewModel = 0,
-        EditionViewModel = 1
+        JEU_VIEWMODEL = 0,
+        EDITION_VIEWMODEL = 1
     };
 }
