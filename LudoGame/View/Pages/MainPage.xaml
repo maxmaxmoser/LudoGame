@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="boardGrid">
-            <ListBox x:Name="listeDesElementsDeJeux" ItemsSource="{Binding LesElementsDeJeux}" SelectedItem="{Binding JeuSelectionne}">
+            <ListBox x:Name="listeDesElementsDeJeux" ItemsSource="{Binding LesElementsDeJeux}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" MaxWidth="{Binding ActualWidth, ElementName=boardGrid}" />
@@ -32,14 +32,14 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <uc:Uc_BoardGamesDisplay NomJeu="{Binding Nom}" NbJoueursMin="{Binding NbJoueursMin}" NbJoueursMax="{Binding NbJoueursMax}" AgeMin="{Binding AgeMin}" ImageJeu="{Binding CheminImage}" Margin="10"/>
+                        <uc:Uc_BoardGamesDisplay NomElementJeu="{Binding Nom}" NbJoueursMin="{Binding NbJoueursMin}" NbJoueursMax="{Binding NbJoueursMax}" AgeMin="{Binding AgeMin}" ImageElementJeu="{Binding CheminImage}" Margin="10"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Margin="10">
             <Button Content="Ajouter un Jeu" Command="{Binding GoToAddGame}"/>
-            <Button Content="Voir les détails" Command="{Binding GoToDetails}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" IsEnabled="{Binding JeuSelectionne, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
+            <Button Content="Voir les détails" Command="{Binding GoToDetails}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" IsEnabled="{Binding SelectedItem, ElementName=listeDesElementsDeJeux, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
             <Button Content="Supprimer le jeu" Command="{Binding SupprimerJeu}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" Margin="60,0,0,0"/>
         </StackPanel>
     </Grid>

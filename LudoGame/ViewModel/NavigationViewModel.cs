@@ -50,8 +50,8 @@ namespace LudoGame.ViewModel
             LesPages = new ObservableCollection<Page>();
 
             AddPageToNavigation(new MainPage(), LesViewModels[(int)EViewModels.JEU_VIEWMODEL]);
-            AddPageToNavigation(new DetailsJeuPage(), LesViewModels[(int)EViewModels.EDITION_VIEWMODEL]);
-            AddPageToNavigation(new AddGamePage(), LesViewModels[(int)EViewModels.EDITION_VIEWMODEL]);
+            AddPageToNavigation(new DetailsJeuPage(), LesViewModels[(int)EViewModels.EDITIONVIEWMODEL]);
+            AddPageToNavigation(new AddGamePage(), LesViewModels[(int)EViewModels.EDITIONVIEWMODEL]);
 
             PageCourante = LesPages[(int)ENomsPage.MAIN_PAGE];
         }
@@ -69,14 +69,14 @@ namespace LudoGame.ViewModel
 
         public  void GoToDetails(ElementJeu elementJeuSelectionne)
         {
-            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EDITION_VIEWMODEL];
+            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EDITIONVIEWMODEL];
             detailsViewModel.JeuSelectionne = elementJeuSelectionne;
             PageCourante = LesPages[(int)ENomsPage.DETAILS_JEU_PAGE];
         }
 
         public void GoToAddGame(ElementJeu elementJeuSelectionne)
         {
-            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EDITION_VIEWMODEL];
+            DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.EDITIONVIEWMODEL];
             detailsViewModel.JeuSelectionne = elementJeuSelectionne;
             PageCourante = LesPages[(int)ENomsPage.ADD_GAME_PAGE];
         }
@@ -97,6 +97,6 @@ namespace LudoGame.ViewModel
     enum EViewModels
     {
         JEU_VIEWMODEL = 0,
-        EDITION_VIEWMODEL = 1
+        EDITIONVIEWMODEL = 1
     };
 }

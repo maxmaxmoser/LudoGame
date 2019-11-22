@@ -20,8 +20,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <uc:Uc_BoardGameAttributes Grid.Row="0" NomJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
-                                       DescriptionJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
+            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
+                                       DescriptionElementJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
                                        NbJoueursMin="{Binding JeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding JeuSelectionne.NbJoueursMax, Mode=TwoWay}"
                                        PickImageCommand="{Binding PickImage}"  ModificationEstAutorisee="True"/>
 

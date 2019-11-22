@@ -25,17 +25,17 @@ namespace LudoGame.User_Controls
             InitializeComponent();
         }
 
-        
-        #region NomJeu DP
 
-        public string NomJeu 
+        #region NomElementJeu DP
+
+        public string NomElementJeu
         {
-            get { return (string)GetValue(NomJeuProperty); }
-            set { SetValue(NomJeuProperty, value); }
+            get { return (string)GetValue(NomElementJeuProperty); }
+            set { SetValue(NomElementJeuProperty, value); }
         }
 
-        public static readonly DependencyProperty NomJeuProperty = DependencyProperty.Register(
-            "NomJeu",
+        public static readonly DependencyProperty NomElementJeuProperty = DependencyProperty.Register(
+            "NomElementJeu",
             typeof(string),
             typeof(Uc_BoardGamesDisplay));
 
@@ -86,16 +86,16 @@ namespace LudoGame.User_Controls
 
         #endregion
 
-        #region ImageJeu DP
+        #region ImageElementJeu DP
 
-        public string ImageJeu
+        public string ImageElementJeu
         {
-            get { return (string)GetValue(ImageJeuProperty); }
-            set { SetValue(ImageJeuProperty, value); }
+            get { return (string)GetValue(ImageElementJeuProperty); }
+            set { SetValue(ImageElementJeuProperty, value); }
         }
 
-        public static readonly DependencyProperty ImageJeuProperty = DependencyProperty.Register(
-            "ImageJeu",
+        public static readonly DependencyProperty ImageElementJeuProperty = DependencyProperty.Register(
+            "ImageElementJeu",
             typeof(string),
             typeof(Uc_BoardGamesDisplay));
 

@@ -27,8 +27,8 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Source="{Binding ImageJeu, ElementName=ucDisplayBoardGames}" Height="200" Width="200"/>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding NomJeu, ElementName=ucDisplayBoardGames}" FontWeight="Bold" FontSize="25" />
+        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Source="{Binding ImageElementJeu, ElementName=ucDisplayBoardGames}" Height="200" Width="200"/>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding NomElementJeu, ElementName=ucDisplayBoardGames}" FontWeight="Bold" FontSize="25" />
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">
             <TextBlock>
                 <TextBlock.Text>

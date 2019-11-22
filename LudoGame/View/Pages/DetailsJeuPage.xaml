@@ -5,27 +5,66 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LudoGame.View.Pages"
       xmlns:uc="clr-namespace:LudoGame.User_Controls"
+      xmlns:conv="clr-namespace:LudoGame.Converter"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="800"
       Title="EditionPage">
+
+    <Page.Resources>
+        <conv:ObjectExistToBooleanConverter x:Key="ObjectExistToBooleanConverter"/>
+        <conv:BooleanToCollapsedVisibilityConverter x:Key="BooleanToCollapsedVisibilityConverter"/>
+    </Page.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <uc:Uc_BoardGameAttributes Grid.Row="0" NomJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
-                                       DescriptionJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
+            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
+                                       DescriptionElementJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
                                        NbJoueursMin="{Binding JeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding JeuSelectionne.NbJoueursMax, Mode=TwoWay}"
                                        PickImageCommand="{Binding PickImage}"  ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
+            <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF000000" Margin="40,0,40,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1">
+                    <TextBlock Text="Liste des extensions" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
+
+                    <ListView x:Name="lvExtensions" Grid.Row="1" ItemsSource="{Binding JeuSelectionne.LesExtensionsDuJeu}" SelectionMode="Single" Height="100" HorizontalContentAlignment="Center" Margin="10">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Nom}" FontSize="20"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Grid Grid.Row="2" Margin="10" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Ajouter une Extension" Command="" Visibility="{Binding IsChecked, ElementName=checkModifications, Converter={StaticResource BooleanToCollapsedVisibilityConverter}}" FontSize="15"/>
+                        <Button Grid.Column="1" Content="Voir les détails" Command="" CommandParameter="{Binding SelectedItem, ElementName=lvExtensions}" 
+                                IsEnabled="{Binding SelectedItem, ElementName=lvExtensions, Converter={StaticResource ObjectExistToBooleanConverter}}" FontSize="15"/>
+                        <Button Grid.Column="2" Content="Supprimer l'extension" Command="" IsEnabled="{Binding SelectedItem, ElementName=lvExtensions, Converter={StaticResource ObjectExistToBooleanConverter}}" 
+                                Visibility="{Binding IsChecked, ElementName=checkModifications, Converter={StaticResource BooleanToCollapsedVisibilityConverter}}" FontSize="15"/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="2" Margin="10" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" x:Name="checkModifications" Grid.Row="5" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Content="Activer la modification" FontSize="20" IsChecked="{Binding ModificationEstAutorisee}" />
+                <CheckBox x:Name="checkModifications" Grid.Column="0" Grid.Row="5" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Content="Activer la modification" FontSize="20" IsChecked="{Binding ModificationEstAutorisee}" />
                 <Button Grid.Column="1" Content="Retour au menu" Command="{Binding GoToMain}" FontSize="20" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>

@@ -8,14 +8,14 @@ namespace LudoGame.Model
 {
     class Jeu : ElementJeu
     {
-        private List<ExtensionJeu> lesExtensionsDeJeux;
-        public List<ExtensionJeu> LesExtensionsDeJeux
+        private List<ExtensionJeu> lesExtensionsDuJeu;
+        public List<ExtensionJeu> LesExtensionsDuJeu
         {
-            get => lesExtensionsDeJeux;
+            get => lesExtensionsDuJeu;
 
             set
             {
-                lesExtensionsDeJeux = value;
+                lesExtensionsDuJeu = value;
                 NotifyPropertyChanged();
             }
 
@@ -23,12 +23,12 @@ namespace LudoGame.Model
         public Jeu(string nom = "", int nbJoueurmin = 0, int nbJoueursMax = 0, int ageMin = 0, double prix = 0, string description = "", string cheminImage = "/Pictures/Board_picture_dummy.png")
             : base(nom, nbJoueurmin, nbJoueursMax, ageMin, prix, description, cheminImage) 
         {
-            this.LesExtensionsDeJeux = new List<ExtensionJeu>();
+            this.lesExtensionsDuJeu = new List<ExtensionJeu>();
         }
 
         public void addExtension(ExtensionJeu extension)
         {
-            LesExtensionsDeJeux.Add(extension);
+            LesExtensionsDuJeu.Add(extension);
         }
     }
 }

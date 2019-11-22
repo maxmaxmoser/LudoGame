@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\BooleanToCollapsedVisibilityConverter.cs" />
     <Compile Include="Converter\ObjectExistToBooleanConverter.cs" />
     <Compile Include="Model\ElementJeu.cs" />
     <Compile Include="Model\ExtensionJeu.cs" />
