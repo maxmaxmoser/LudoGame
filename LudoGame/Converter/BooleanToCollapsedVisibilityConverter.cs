@@ -7,7 +7,13 @@ using System.Windows.Data;
 using System.Windows;
 
 namespace LudoGame.Converter
-{
+{  
+    /// <summary>
+    /// Convertisseur permettant d'indiquer si un composant graphique doit être visible avec la valeur booléenne true ou ou alors collapse avec false.
+    /// </summary>
+    /// <remarks>
+    /// A utiliser dans le champ "Visibility" des composant graphiques XAML.
+    /// </remarks>
     class BooleanToCollapsedVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

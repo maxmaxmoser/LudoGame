@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="LudoGame.User_Controls.Uc_BoardGamesDisplay"
+﻿<!-- UserControl servant de format d'affichage à la liste des jeux de la page d'acceuil -->
+<UserControl x:Class="LudoGame.User_Controls.Uc_BoardGamesDisplay"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,7 +27,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-
+        
         <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Source="{Binding ImageElementJeu, ElementName=ucDisplayBoardGames}" Height="200" Width="200"/>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding NomElementJeu, ElementName=ucDisplayBoardGames}" FontWeight="Bold" FontSize="25" />
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center">

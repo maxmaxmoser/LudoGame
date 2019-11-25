@@ -1,4 +1,6 @@
-﻿<Page x:Class="LudoGame.View.Pages.HomePage"
+﻿<!-- Page d'accueil de l'application -->
+<!-- Liée au ElementsJeuxViewModel -->
+<Page x:Class="LudoGame.View.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -22,7 +24,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+        
+        <!-- Liste des jeux de sociétés enregistrés dans l'application -->
         <Grid x:Name="boardGrid">
             <ListBox x:Name="listeDesElementsDeJeux" ItemsSource="{Binding LesElementsDeJeux}">
                 <ListBox.ItemsPanel>
@@ -37,6 +40,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
+        
+        <!-- Boutons interactifs -->
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="1" Margin="10">
             <Button Content="Ajouter un Jeu" Command="{Binding GoToAddGameCommand}"/>
             <Button Content="Voir les détails" Command="{Binding GoToDetailsCommand}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" IsEnabled="{Binding SelectedItem, ElementName=listeDesElementsDeJeux, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
