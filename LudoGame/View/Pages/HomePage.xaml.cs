@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LudoGame.View.Pages
 {
     /// <summary>
-    /// Logique d'interaction pour AddGamePage.xaml
+    /// Logique d'interaction pour MainPage.xaml
     /// </summary>
-    public partial class AddGamePage : Page
+    public partial class HomePage : Page
     {
-        public AddGamePage()
+        public HomePage()
         {
             InitializeComponent();
         }

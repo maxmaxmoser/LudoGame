@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace LudoGame.ViewModel
 {
-    class BaseViewModel : INotifyPropertyChanged
+    /// <summary>
+    /// Classe abstraite dotant tous les ViewModel qui en hérite des fonctionnalités permettant d'informer la vue des modifications (INotifyPropertyChanged).
+    /// </summary>
+    abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

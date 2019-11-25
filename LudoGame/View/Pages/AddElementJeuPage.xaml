@@ -1,4 +1,4 @@
-﻿<Page x:Class="LudoGame.View.Pages.AddGamePage"
+﻿<Page x:Class="LudoGame.View.Pages.AddElementJeuPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -20,18 +20,18 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
-                                       DescriptionElementJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
-                                       NbJoueursMin="{Binding JeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding JeuSelectionne.NbJoueursMax, Mode=TwoWay}"
-                                       PickImageCommand="{Binding PickImage}"  ModificationEstAutorisee="True"/>
+            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding ElementJeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding ElementJeuSelectionne.CheminImage, Mode=TwoWay}"
+                                       DescriptionElementJeu="{Binding ElementJeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding ElementJeuSelectionne.AgeMin, Mode=TwoWay}" 
+                                       NbJoueursMin="{Binding ElementJeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding ElementJeuSelectionne.NbJoueursMax, Mode=TwoWay}"
+                                       PickImageCommand="{Binding PickImageCommand}"  ModificationEstAutorisee="True"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Ajouter le jeu" Command="{Binding AddGame}" CommandParameter="{Binding JeuSelectionne}" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
-                <Button Grid.Column="1" Content="Annuler" Command="{Binding GoToMain}" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="0" Content="Ajouter" Command="{Binding AddElementJeuCommand}" CommandParameter="{Binding ElementJeuSelectionne}" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="1" Content="Annuler" Command="{Binding GoBackCommand}" CommandParameter="{Binding ElementJeuSelectionne}" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>
     </ScrollViewer>

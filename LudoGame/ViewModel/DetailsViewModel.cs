@@ -9,8 +9,16 @@ using System.Windows.Input;
 
 namespace LudoGame.ViewModel
 {
+    /// <summary>
+    /// ViewModel relié à la page d'ajout d'un élément ainsi que les pages de détails.
+    /// Il permet la manipulation d'un élément de jeu ciblé.
+    /// </summary>
     class DetailsViewModel : BaseViewModel
     {
+
+        #region Champs et propriétés
+
+        // Référence vers le ViewModel de navigation dans l'application.
         private NavigationViewModel navigationViewModel;
         public NavigationViewModel NavigationViewModel
         {
@@ -25,8 +33,9 @@ namespace LudoGame.ViewModel
             }
         }
 
+        // Elément de jeu concerné par la page active.
         private ElementJeu elementjeuSelectionne;
-        public ElementJeu JeuSelectionne
+        public ElementJeu ElementJeuSelectionne
         {
             get => elementjeuSelectionne;
 
@@ -40,6 +49,7 @@ namespace LudoGame.ViewModel
             }
         }
 
+        // Booléen permettant d'indiquer si des modifications sont possibles ou non sur la page.
         private Boolean modificationEstAutorisee;
         public Boolean ModificationEstAutorisee
         {
@@ -54,31 +64,90 @@ namespace LudoGame.ViewModel
                 }
             }
         }
+
+        #endregion
+
+        #region Constructeur
+
+        /// <summary>
+        /// Initialisation du viewModel.
+        /// </summary>
+        /// <remarks>
+        /// Ce ViewModel est initialisé à partir du NavigationViewModel.
+        /// </remarks>
+        /// <param name="navigationViewModel">La référence vers le lien du ViewModel de navigation.</param>
         public DetailsViewModel(NavigationViewModel navigationViewModel)
         {
             this.NavigationViewModel = navigationViewModel;
             ModificationEstAutorisee = false;
         }
 
-        private ICommand goToMainCommand;
-        public ICommand GoToMain
+        #endregion
+
+        #region Commandes
+
+        /// <summary>
+        /// Permet de revenir à la page précédente en cas d'appui sur un bouton "annuler" par exemple.
+        /// </summary>
+        private ICommand goBackCommand;
+        public ICommand GoBackCommand
         {
             get
             {
-                if (goToMainCommand == null)
+                if (goBackCommand == null)
                 {
-                    goToMainCommand = new RelayCommand<Object>((obj) =>
+                    goBackCommand = new RelayCommand<ElementJeu>((elementJeu) =>
                     {
-                        NavigationViewModel.GoToMain();
-                        ModificationEstAutorisee = false;
+                        switch (elementJeu.GetType().Name)
+                        {
+                            // Si on est dans les détails d'un jeu, on revient à la page d'acceuil.
+                            case "Jeu":
+                                {
+                                    NavigationViewModel.GoToMain();  // Appel de la fonction de navigation du NavigationViewModel
+                                    ModificationEstAutorisee = false;
+                                    break;
+                                }
+
+                            // Si on est dans les détails d'une extension, on revient à son jeu associé
+                            case "ExtensionJeu":
+                                {                                
+                                    NavigationViewModel.GoToDetails(((ExtensionJeu)elementJeu).JeuAssocie); // Appel de la fonction de navigation du NavigationViewModel
+                                    break;
+                                }
+                        }
                     });
                 }
-                return goToMainCommand;
+                return goBackCommand;
             }
         }
 
+        /// <summary>
+        /// Permet d'accéder aux détails d'une extension du jeu courant.
+        /// </summary>
+        private ICommand goToExtensionsDetailsCommand;
+        public ICommand GoToExtensionsDetailsCommand
+        {
+            get
+            {
+                if (goToExtensionsDetailsCommand == null)
+                {
+                    goToExtensionsDetailsCommand = new RelayCommand<ExtensionJeu>((extensionJeu) =>
+                    {
+                        if (extensionJeu != null)
+                        {
+                            NavigationViewModel.GoToDetails(extensionJeu);
+                        }
+                    });
+                }
+                return goToExtensionsDetailsCommand;
+            }
+        }
+
+        /// <summary>
+        /// Ouverture d'un explorateur de fichier pour sélectionner une image.
+        /// </summary>
         private ICommand pickImageCommand;
-        public ICommand PickImage
+        public ICommand PickImageCommand
         {
             get
             {
@@ -91,7 +160,7 @@ namespace LudoGame.ViewModel
 
                         if (openFileDialog.ShowDialog() == true)
                         {
-                            JeuSelectionne.CheminImage = openFileDialog.FileName;
+                            ElementJeuSelectionne.CheminImage = openFileDialog.FileName;
                         }
                     });
                 }
@@ -99,22 +168,83 @@ namespace LudoGame.ViewModel
             }
         }
 
-        private ICommand addGameCommand;
-        public ICommand AddGame
+        /// <summary>
+        /// Commande utilisée par la page d'ajout pour ajouter le nouveau jeu à la liste d'accueil.
+        /// </summary>
+        private ICommand addElementJeuCommand;
+        public ICommand AddElementJeuCommand
         {
             get
             {
-                if (addGameCommand == null)
+                if (addElementJeuCommand == null)
                 {
-                    addGameCommand = new RelayCommand<Jeu>((jeu) =>
+                    addElementJeuCommand = new RelayCommand<ElementJeu>((elementJeu) =>
                     {
-                        NavigationViewModel.AddGameToViewModel(jeu);
-                        NavigationViewModel.GoToMain();
-                        ModificationEstAutorisee = false;
+                        switch (elementJeu.GetType().Name)
+                        {
+                            // Si on ajoute un jeu, ce dernier est intégré à la liste de la page d'acceuil avant d'y retourner.
+                            case "Jeu":
+                            {
+                                    Jeu jeu = (Jeu)elementJeu;
+                                    NavigationViewModel.AddGameToViewModel(jeu);
+                                    NavigationViewModel.GoToMain();
+                                    ModificationEstAutorisee = false;
+                                    break;
+                             }
+
+                            // Si on ajoute une extension, on la ratache à son jeu associé avant de revenir à ses détails.
+                            case "ExtensionJeu":
+                            {
+                                ExtensionJeu extensionJeu = (ExtensionJeu)elementJeu;
+                                extensionJeu.JeuAssocie.addExtension(extensionJeu);
+                                NavigationViewModel.GoToDetails(extensionJeu.JeuAssocie);
+                                break;
+                            }
+                        }
                     });
                 }
-                return addGameCommand;
+                return addElementJeuCommand;
             }
         }
+
+        /// <summary>
+        /// Commande présente dans les détails d'un jeu pour supprimer une extension de la liste.
+        /// </summary>
+        private ICommand removeExtensionCommand;
+        public ICommand RemoveExtensionCommand
+        {
+            get
+            {
+                if (removeExtensionCommand == null)
+                {
+                    removeExtensionCommand = new RelayCommand<ExtensionJeu>((extension) => ((Jeu)ElementJeuSelectionne).LesExtensionsDuJeu.Remove(extension));
+                }
+                return removeExtensionCommand;
+            }
+        }
+
+        /// <summary>
+        /// Commande utilisée pour naviguer dans la fenêtre d'ajout d'une nouvelle extension de jeu.
+        /// </summary>
+        /// <remarks>
+        /// L'extension en question est initialisée dans cette commande pour ensuite être passée en paramètre dans la fonction du NavigationViewModel.
+        /// </remarks>
+        private ICommand goToAddExtensionCommand;
+        public ICommand GoToAddExtensionCommand
+        {
+            get
+            {
+                if (goToAddExtensionCommand == null)
+                {
+                    goToAddExtensionCommand = new RelayCommand<Object>((obj) =>
+                    {
+                        NavigationViewModel.GoToAddGame(new ExtensionJeu((Jeu)ElementJeuSelectionne));
+                    });
+                }
+                return goToAddExtensionCommand;
+            }
+        }
+
+        #endregion
     }
 }

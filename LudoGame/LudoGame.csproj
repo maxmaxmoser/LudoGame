@@ -69,14 +69,17 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DetailsViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
-    <Compile Include="View\Pages\AddGamePage.xaml.cs">
-      <DependentUpon>AddGamePage.xaml</DependentUpon>
+    <Compile Include="View\Pages\AddElementJeuPage.xaml.cs">
+      <DependentUpon>AddElementJeuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\DetailsExtensionJeuPage.xaml.cs">
+      <DependentUpon>DetailsExtensionJeuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\DetailsJeuPage.xaml.cs">
       <DependentUpon>DetailsJeuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="User_Controls\Uc_BoardGameAttributes.xaml">
       <SubType>Designer</SubType>
@@ -100,7 +103,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\AddGamePage.xaml">
+    <Page Include="View\Pages\AddElementJeuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\DetailsExtensionJeuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\MainPage.xaml">
+    <Page Include="View\Pages\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

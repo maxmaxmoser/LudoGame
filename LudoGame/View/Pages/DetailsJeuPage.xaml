@@ -22,10 +22,11 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding JeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding JeuSelectionne.CheminImage, Mode=TwoWay}"
-                                       DescriptionElementJeu="{Binding JeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding JeuSelectionne.AgeMin, Mode=TwoWay}" 
-                                       NbJoueursMin="{Binding JeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding JeuSelectionne.NbJoueursMax, Mode=TwoWay}"
-                                       PickImageCommand="{Binding PickImage}"  ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
+            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding ElementJeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding ElementJeuSelectionne.CheminImage, Mode=TwoWay}"
+                                       DescriptionElementJeu="{Binding ElementJeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding ElementJeuSelectionne.AgeMin, Mode=TwoWay}" 
+                                       NbJoueursMin="{Binding ElementJeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding ElementJeuSelectionne.NbJoueursMax, Mode=TwoWay}"
+                                       PickImageCommand="{Binding PickImageCommand}"  ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
+            
             <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF000000" Margin="40,0,40,0">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -34,27 +35,35 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Liste des extensions" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.ColumnSpan="2" Text="Liste des extensions" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
 
-                    <ListView x:Name="lvExtensions" Grid.Row="1" ItemsSource="{Binding JeuSelectionne.LesExtensionsDuJeu}" SelectionMode="Single" Height="100" HorizontalContentAlignment="Center" Margin="10">
+                    <ListView x:Name="lvExtensions" Grid.Row="1" ItemsSource="{Binding ElementJeuSelectionne.LesExtensionsDuJeu}" SelectionMode="Single" Height="100" Margin="10,10,0,10">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Nom}" FontSize="20"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Nom}" FontSize="20" Margin="10,0,0,0"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <Grid Grid.Row="2" Margin="10" >
+                    <Button Grid.Row="1" Grid.Column="1" Content=" Détails " Command="{Binding GoToExtensionsDetailsCommand}" CommandParameter="{Binding SelectedItem, ElementName=lvExtensions}" 
+                                IsEnabled="{Binding SelectedItem, ElementName=lvExtensions, Converter={StaticResource ObjectExistToBooleanConverter}}" FontSize="25" Margin="0,10,0,10"/>
+                    
+                    <Grid Grid.Row="2" Margin="10,0,0,10" Visibility="{Binding IsChecked, ElementName=checkModifications, Converter={StaticResource BooleanToCollapsedVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
+                           
                         </Grid.ColumnDefinitions>
-                        <Button Content="Ajouter une Extension" Command="" Visibility="{Binding IsChecked, ElementName=checkModifications, Converter={StaticResource BooleanToCollapsedVisibilityConverter}}" FontSize="15"/>
-                        <Button Grid.Column="1" Content="Voir les détails" Command="" CommandParameter="{Binding SelectedItem, ElementName=lvExtensions}" 
-                                IsEnabled="{Binding SelectedItem, ElementName=lvExtensions, Converter={StaticResource ObjectExistToBooleanConverter}}" FontSize="15"/>
-                        <Button Grid.Column="2" Content="Supprimer l'extension" Command="" IsEnabled="{Binding SelectedItem, ElementName=lvExtensions, Converter={StaticResource ObjectExistToBooleanConverter}}" 
-                                Visibility="{Binding IsChecked, ElementName=checkModifications, Converter={StaticResource BooleanToCollapsedVisibilityConverter}}" FontSize="15"/>
+                        <Button Content="Ajouter une Extension" Command="{Binding GoToAddExtensionCommand}" Visibility="{Binding IsChecked, ElementName=checkModifications, Converter={StaticResource BooleanToCollapsedVisibilityConverter}}" FontSize="15"/>
+                        <Button Grid.Column="1" Content="Supprimer l'extension" Command="{Binding RemoveExtensionCommand}" CommandParameter="{Binding SelectedItem, ElementName=lvExtensions}" IsEnabled="{Binding SelectedItem, ElementName=lvExtensions, Converter={StaticResource ObjectExistToBooleanConverter}}" 
+                                FontSize="15"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -65,7 +74,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <CheckBox x:Name="checkModifications" Grid.Column="0" Grid.Row="5" VerticalAlignment="Bottom" VerticalContentAlignment="Center" Content="Activer la modification" FontSize="20" IsChecked="{Binding ModificationEstAutorisee}" />
-                <Button Grid.Column="1" Content="Retour au menu" Command="{Binding GoToMain}" FontSize="20" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="1" Content="Retour au menu" Command="{Binding GoBackCommand}" CommandParameter="{Binding ElementJeuSelectionne}" FontSize="20" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>
     </ScrollViewer>
