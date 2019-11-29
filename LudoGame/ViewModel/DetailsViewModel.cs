@@ -238,7 +238,7 @@ namespace LudoGame.ViewModel
                 {
                     goToAddExtensionCommand = new RelayCommand<Object>((obj) =>
                     {
-                        NavigationViewModel.GoToAddGame(new ExtensionJeu((Jeu)ElementJeuSelectionne));
+                        NavigationViewModel.GoToAddGame(new ExtensionJeu((Jeu)ElementJeuSelectionne, editeur:ElementJeuSelectionne.Editeur));
                     });
                 }
                 return goToAddExtensionCommand;

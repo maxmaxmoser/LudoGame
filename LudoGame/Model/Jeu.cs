@@ -30,8 +30,8 @@ namespace LudoGame.Model
         /// <summary>
         /// Constructeur d'un jeu qui reprend les propriétés de la classe parente. A sa création, la liste d'extensions est initialisée.
         /// </summary>
-        public Jeu(string nom = "", int nbJoueurmin = 0, int nbJoueursMax = 0, int ageMin = 0, double prix = 0, string description = "", string cheminImage = "/Pictures/Board_picture_dummy.png")
-            : base(nom, nbJoueurmin, nbJoueursMax, ageMin, prix, description, cheminImage) 
+        public Jeu(string nom = "", string editeur = "", int nbJoueurmin = 0, int nbJoueursMax = 0, int ageMin = 0, double prix = 0, int dureeMoyenne = 0, string description = "", string cheminImage = "/Pictures/Board_picture_dummy.png")
+            : base(nom, editeur, nbJoueurmin, nbJoueursMax, ageMin, prix, dureeMoyenne, description, cheminImage) 
         {
             this.lesExtensionsDuJeu = new ObservableCollection<ExtensionJeu>();
         }
