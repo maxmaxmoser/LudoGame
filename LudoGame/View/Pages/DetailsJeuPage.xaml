@@ -9,7 +9,7 @@
       xmlns:uc="clr-namespace:LudoGame.User_Controls"
       xmlns:conv="clr-namespace:LudoGame.Converter"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="800"
+      d:DesignHeight="930.707" d:DesignWidth="800"
       Title="EditionPage">
 
     <Page.Resources>
@@ -24,10 +24,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <uc:Uc_BoardGameAttributes Grid.Row="0" NomElementJeu="{Binding ElementJeuSelectionne.Nom, Mode=TwoWay}" ImageElementJeu="{Binding ElementJeuSelectionne.CheminImage, Mode=TwoWay}"
+            <uc:Uc_BoardGameAttributes Grid.Row="0" Margin="0,0,0,20" NomElementJeu="{Binding ElementJeuSelectionne.Nom, Mode=TwoWay}" EditeurElementJeu="{Binding ElementJeuSelectionne.Editeur, Mode=TwoWay}" 
+                                       PrixElementJeu="{Binding ElementJeuSelectionne.Prix, Mode=TwoWay}" ImageElementJeu="{Binding ElementJeuSelectionne.CheminImage, Mode=TwoWay}"
                                        DescriptionElementJeu="{Binding ElementJeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding ElementJeuSelectionne.AgeMin, Mode=TwoWay}" 
                                        NbJoueursMin="{Binding ElementJeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding ElementJeuSelectionne.NbJoueursMax, Mode=TwoWay}"
-                                       PickImageCommand="{Binding PickImageCommand}"  ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
+                                       DureeMoyenneElementJeu="{Binding ElementJeuSelectionne.DureeMoyenne, Mode=TwoWay}" PickImageCommand="{Binding PickImageCommand}"
+                                       ModificationEstAutorisee="{Binding IsChecked, ElementName=checkModifications, Mode=TwoWay}"/>
             
             <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF000000" Margin="40,0,40,0">
                 <Grid>

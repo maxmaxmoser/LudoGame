@@ -40,6 +40,21 @@ namespace LudoGame.User_Controls
 
         #endregion
 
+        #region EditeurElementJeu DP
+
+        public string EditeurElementJeu
+        {
+            get { return (string)GetValue(EditeurElementJeuProperty); }
+            set { SetValue(EditeurElementJeuProperty, value); }
+        }
+
+        public static readonly DependencyProperty EditeurElementJeuProperty = DependencyProperty.Register(
+            "EditeurElementJeu",
+            typeof(string),
+            typeof(Uc_BoardGameAttributes));
+
+        #endregion
+
         #region DescriptionElementJeu DP
 
         public string DescriptionElementJeu
@@ -96,6 +111,36 @@ namespace LudoGame.User_Controls
         public static readonly DependencyProperty AgeMinProperty = DependencyProperty.Register(
             "AgeMin",
             typeof(int),
+            typeof(Uc_BoardGameAttributes));
+
+        #endregion
+
+        #region PrixElementJeu DP
+
+        public int PrixElementJeu
+        {
+            get { return (int)GetValue(PrixElementJeuProperty); }
+            set { SetValue(PrixElementJeuProperty, value); }
+        }
+
+        public static readonly DependencyProperty PrixElementJeuProperty = DependencyProperty.Register(
+            "PrixElementJeu",
+            typeof(double),
+            typeof(Uc_BoardGameAttributes));
+
+        #endregion
+
+        #region DureeMoyenneElementJeu DP
+
+        public int DureeMoyenneElementJeu
+        {
+            get { return (int)GetValue(DureeMoyenneElementJeuProperty); }
+            set { SetValue(DureeMoyenneElementJeuProperty, value); }
+        }
+
+        public static readonly DependencyProperty DureeMoyenneElementJeuProperty = DependencyProperty.Register(
+            "DureeMoyenneElementJeu",
+            typeof(double),
             typeof(Uc_BoardGameAttributes));
 
         #endregion

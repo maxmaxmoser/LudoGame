@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:LudoGame.User_Controls"
              mc:Ignorable="d" 
              x:Name="ucBoardGameAttributes"
-             d:DesignHeight="616" d:DesignWidth="800">
+             d:DesignHeight="695" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="20"/>
@@ -31,6 +31,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -39,10 +40,14 @@
         <!-- Champ contenant le nom -->
         <TextBlock Grid.Row="0" Text="Nom :" HorizontalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NomElementJeu, ElementName=ucBoardGameAttributes}" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,10,10" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}"/>
+
+        <!-- Champ contenant l'éditeur -->
+        <TextBlock Grid.Row="1" Text="Editeur :" HorizontalAlignment="Center" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EditeurElementJeu, ElementName=ucBoardGameAttributes}" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,0,10,10" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}"/>
         
         <!-- Champ d'image -->
-        <TextBlock Grid.Row="1" Text="Image :" HorizontalAlignment="Center" />
-        <Grid  Grid.Row="1" Grid.Column="1" Margin="10,0,10,10">
+        <TextBlock Grid.Row="2" Text="Image :" HorizontalAlignment="Center" />
+        <Grid  Grid.Row="2" Grid.Column="1" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
@@ -51,17 +56,17 @@
             <!-- Le bouton ci-dessous appelle une commande ouvrant un sélecteur de fichier pour choisir une image -->
             <Button Grid.Column="1" Content="..." FontSize="20" HorizontalAlignment="Stretch" Command="{Binding PickImageCommand, ElementName=ucBoardGameAttributes}" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}" />
         </Grid>
-        <Border Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="#FF000000" Height="300" Width="300" HorizontalAlignment="Center" Margin="0,10,0,40">
-            <Image Grid.Row="2" Grid.ColumnSpan="2" Source="{Binding ImageElementJeu, ElementName=ucBoardGameAttributes}" HorizontalAlignment="Center" Stretch="Fill" />
+        <Border Grid.Row="3" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="#FF000000" Height="300" Width="300" HorizontalAlignment="Center" Margin="0,10,0,40">
+            <Image Grid.Row="3" Grid.ColumnSpan="2" Source="{Binding ImageElementJeu, ElementName=ucBoardGameAttributes}" HorizontalAlignment="Center" Stretch="Fill" />
         </Border>
         
         <!-- Champ de description -->
-        <TextBlock Grid.Row="3" Text="Description :" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DescriptionElementJeu, ElementName=ucBoardGameAttributes}" TextAlignment="Left" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+        <TextBlock Grid.Row="4" Text="Description :" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DescriptionElementJeu, ElementName=ucBoardGameAttributes}" TextAlignment="Left" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Disabled" MinLines="4" MaxLines="4"  HorizontalAlignment="Stretch" Margin="10,0,10,10" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}"/>
         
         <!-- Nombre de joueurs et age minimum -->
-        <StackPanel  Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal" Margin="10,10,10,20" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
+        <StackPanel  Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal" Margin="10,10,10,10" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
             <TextBlock Text="Jouable de "/>
             <TextBox Text="{Binding NbJoueursMin, ElementName=ucBoardGameAttributes}" Width="40"/>
             <TextBlock Text=" à "/>
@@ -70,5 +75,17 @@
             <TextBox Text="{Binding AgeMin, ElementName=ucBoardGameAttributes}" Width="40" />
             <TextBlock Text=" ans."/>
         </StackPanel>
+        
+        <!-- Durée moyenne -->
+        <WrapPanel Grid.Row="6" HorizontalAlignment="Left" Margin="40,10,0,0" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
+            <TextBlock Text="Durée moyenne : "/>
+            <TextBox Text="{Binding DureeMoyenneElementJeu, ElementName=ucBoardGameAttributes}" Width="40"/>
+        </WrapPanel>
+
+        <!--Prix -->
+        <WrapPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,40,0" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
+            <TextBlock Text="Prix : "/>
+            <TextBox Text="{Binding PrixElementJeu, ElementName=ucBoardGameAttributes}" Width="40"/>
+        </WrapPanel>
     </Grid>
 </UserControl>
