@@ -19,11 +19,13 @@ namespace LudoGame.Model
         #region Champs et propriétés 
 
         private string nom;
+        private string editeur;
         private string description;
         private int nbJoueursMin;
         private int nbJoueursMax;
         private int ageMin;
         private double prix;
+        private int dureeMoyenne;
         private string cheminImage;   
 
         public string Nom
@@ -42,6 +44,16 @@ namespace LudoGame.Model
             set
             {
                 description = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string Editeur
+        {
+            get => editeur;
+            set
+            {
+                editeur = value;
                 NotifyPropertyChanged();
             }
         }
@@ -86,6 +98,16 @@ namespace LudoGame.Model
             }
         }
 
+        public int DureeMoyenne
+        {
+            get => dureeMoyenne;
+            set
+            {
+                dureeMoyenne = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public string CheminImage
         {
             get => cheminImage;
@@ -115,13 +137,15 @@ namespace LudoGame.Model
         /// <param name="prix">Prix d'acquisition du jeu</param>
         /// <param name="description">Description ou résumé du jeu</param>
         /// <param name="cheminImage">Emplacement de l'image associée au jeu</param>
-        public ElementJeu(string nom, int nbJoueurmin, int nbJoueursMax, int ageMin, double prix, string description, string cheminImage)
+        public ElementJeu(string nom, string editeur, int nbJoueurmin, int nbJoueursMax, int ageMin, double prix, int dureeMoyenne, string description, string cheminImage)
         {
             this.Nom = nom;
+            this.Editeur = editeur;
             this.NbJoueursMin = nbJoueurmin;
             this.nbJoueursMax = nbJoueursMax;
             this.AgeMin = ageMin;
             this.Prix = prix;
+            this.DureeMoyenne = dureeMoyenne;
             this.Description = description;
             this.CheminImage = cheminImage;
         }

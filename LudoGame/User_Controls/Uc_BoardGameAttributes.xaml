@@ -59,7 +59,8 @@
         <TextBlock Grid.Row="3" Text="Description :" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DescriptionElementJeu, ElementName=ucBoardGameAttributes}" TextAlignment="Left" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Disabled" MinLines="4" MaxLines="4"  HorizontalAlignment="Stretch" Margin="10,0,10,10" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}"/>
-
+        
+        <!-- Nombre de joueurs et age minimum -->
         <StackPanel  Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Orientation="Horizontal" Margin="10,10,10,20" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
             <TextBlock Text="Jouable de "/>
             <TextBox Text="{Binding NbJoueursMin, ElementName=ucBoardGameAttributes}" Width="40"/>
