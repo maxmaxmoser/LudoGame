@@ -44,5 +44,36 @@ namespace LudoGame.Model
         {
             LesExtensionsDuJeu.Add(extension);
         }
+
+        /// <summary>
+        /// Obtention du prix total d'un jeu et de ses extensions.
+        /// </summary>
+        public int getNumberOfExtensions()
+        {
+            return this.LesExtensionsDuJeu.Count;
+        }
+
+
+        /// <summary>
+        /// Obtention du prix ajouté par les extensions du jeu.
+        /// </summary>
+        private double getPriceAddedByExtensions()
+        {
+            double prixExtensions = 0;
+
+            foreach(ExtensionJeu extensionJeu in LesExtensionsDuJeu)
+            {
+                prixExtensions += extensionJeu.Prix;
+            }
+            return prixExtensions;
+        }
+
+        /// <summary>
+        /// Obtention du prix total d'un jeu et de ses extensions.
+        /// </summary>
+        public double getPricewithAddons()
+        {
+            return this.Prix + getPriceAddedByExtensions();
+        }
     }
 }
