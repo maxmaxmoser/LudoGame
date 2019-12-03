@@ -69,6 +69,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\DetailsViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ViewModel\StatistiquesViewModel.cs" />
     <Compile Include="View\Pages\AddElementJeuPage.xaml.cs">
       <DependentUpon>AddElementJeuPage.xaml</DependentUpon>
     </Compile>
@@ -80,6 +81,9 @@
     </Compile>
     <Compile Include="View\Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StatistiquesPage.xaml.cs">
+      <DependentUpon>StatistiquesPage.xaml</DependentUpon>
     </Compile>
     <Page Include="User_Controls\Uc_BoardGameAttributes.xaml">
       <SubType>Designer</SubType>
@@ -118,6 +122,10 @@
     <Page Include="View\Pages\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\StatistiquesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

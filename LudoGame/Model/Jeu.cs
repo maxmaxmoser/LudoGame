@@ -46,7 +46,7 @@ namespace LudoGame.Model
         }
 
         /// <summary>
-        /// Obtention du prix total d'un jeu et de ses extensions.
+        /// Obtention du nombre d'extensions ratachées au jeu.
         /// </summary>
         public int getNumberOfExtensions()
         {
@@ -75,5 +75,29 @@ namespace LudoGame.Model
         {
             return this.Prix + getPriceAddedByExtensions();
         }
+
+        /// <summary>
+        /// Obtention de la durée ajoutée par les extensions du jeu en minutes.
+        /// </summary>
+        private int getDurationAddedByExtensions()
+        {
+            int dureeExtensions = 0;
+
+            foreach (ExtensionJeu extensionJeu in LesExtensionsDuJeu)
+            {
+                dureeExtensions += extensionJeu.DureeMoyenne;
+            }
+            return dureeExtensions;
+        }
+
+        /// <summary>
+        /// Obtention de la durée moyenne totale d'un jeu avec ses extensions en minutes.
+        /// </summary>
+        public int getDurationwithAddons()
+        {
+            return this.DureeMoyenne + getDurationAddedByExtensions();
+        }
+
+
     }
 }

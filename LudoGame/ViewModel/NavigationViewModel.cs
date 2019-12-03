@@ -66,6 +66,7 @@ namespace LudoGame.ViewModel
             LesViewModels = new List<BaseViewModel>();
             LesViewModels.Add(new ElementsJeuxViewModel(this));
             LesViewModels.Add(new DetailsViewModel(this));
+            LesViewModels.Add(new StatistiquesViewModel(this));
 
             LesPages = new ObservableCollection<Page>();
 
@@ -73,6 +74,7 @@ namespace LudoGame.ViewModel
             AddPageToNavigation(new DetailsJeuPage(), LesViewModels[(int)EViewModels.DETAILS_VIEWMODEL]);
             AddPageToNavigation(new DetailsExtensionJeuPage(), LesViewModels[(int)EViewModels.DETAILS_VIEWMODEL]);
             AddPageToNavigation(new AddElementJeuPage(), LesViewModels[(int)EViewModels.DETAILS_VIEWMODEL]);
+            AddPageToNavigation(new StatistiquesPage(), LesViewModels[(int)EViewModels.STATISTIQUES_VIEWMODEL]);
 
             PageCourante = LesPages[(int)ENomsPage.HOME_PAGE];
         }
@@ -119,8 +121,8 @@ namespace LudoGame.ViewModel
 
                 case "ExtensionJeu":
                 {
-                        PageCourante = LesPages[(int)ENomsPage.DETAILS_EXTENSION_JEU_PAGE];
-                        break;
+                    PageCourante = LesPages[(int)ENomsPage.DETAILS_EXTENSION_JEU_PAGE];
+                    break;
                 }
             }
             
@@ -135,6 +137,19 @@ namespace LudoGame.ViewModel
             DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.DETAILS_VIEWMODEL];
             detailsViewModel.ElementJeuSelectionne = elementJeuSelectionne;
             PageCourante = LesPages[(int)ENomsPage.ADD_GAME_PAGE];
+        }
+
+
+        /// <summary>
+        /// Affichage de la page de statistiques.
+        /// </summary>
+        /// <param name="lesJeux"> La liste des éléments de jeux sur laquelle se basent les statistiques</param>
+        public void GoToStatistics(List<Jeu> lesJeux)
+        {
+            StatistiquesViewModel statistiquesViewModel = (StatistiquesViewModel)LesViewModels[(int)EViewModels.STATISTIQUES_VIEWMODEL];
+            statistiquesViewModel.LesJeux = lesJeux;
+            statistiquesViewModel.loadStatistics();
+            PageCourante = LesPages[(int)ENomsPage.STATISTIQUES_PAGES];
         }
 
         /// <summary>
@@ -157,7 +172,8 @@ namespace LudoGame.ViewModel
         HOME_PAGE = 0,
         DETAILS_JEU_PAGE = 1,
         DETAILS_EXTENSION_JEU_PAGE = 2,
-        ADD_GAME_PAGE = 3    
+        ADD_GAME_PAGE = 3,    
+        STATISTIQUES_PAGES = 4
     };
 
     /// <summary>
@@ -166,6 +182,7 @@ namespace LudoGame.ViewModel
     enum EViewModels
     {
         JEU_VIEWMODEL = 0,
-        DETAILS_VIEWMODEL = 1
+        DETAILS_VIEWMODEL = 1,
+        STATISTIQUES_VIEWMODEL = 2
     };
 }

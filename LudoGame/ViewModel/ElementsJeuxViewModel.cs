@@ -36,16 +36,16 @@ namespace LudoGame.ViewModel
         }
 
         // Liste des éléments de jeux à afficher. Pour l'heure, seuls les jeux de société y figurent (sans les extensions).
-        private ObservableCollection<ElementJeu> lesElementsDeJeux;
-        public ObservableCollection<ElementJeu> LesElementsDeJeux
+        private ObservableCollection<Jeu> lesJeux;
+        public ObservableCollection<Jeu> LesJeux
         {
-            get => lesElementsDeJeux;
+            get => lesJeux;
 
             set
             {
-                if (value != lesElementsDeJeux)
+                if (value != lesJeux)
                 {
-                    lesElementsDeJeux = value;
+                    lesJeux = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -66,7 +66,7 @@ namespace LudoGame.ViewModel
         public ElementsJeuxViewModel(NavigationViewModel navigationViewModel)
         {
             this.NavigationViewModel = navigationViewModel;
-            LesElementsDeJeux = new ObservableCollection<ElementJeu>();
+            LesJeux = new ObservableCollection<Jeu>();
 
             AddGame(new Jeu("Unlock", "Space Coboys",  1, 6, 10, 32.25, dureeMoyenne:60, cheminImage:"/Pictures/Board_picture_dummy.png"));
             Jeu carcassone = new Jeu("Carcassone", "Zman Games", 2, 6, 7, 70, dureeMoyenne:35, cheminImage: "/Pictures/Board_picture_dummy.png");
@@ -78,7 +78,7 @@ namespace LudoGame.ViewModel
 
         #endregion
 
-        #region Fonction et méthodes
+        #region Fonctions et méthodes
 
         /// <summary>
         /// Ajout d'un jeu à la liste.
@@ -86,7 +86,7 @@ namespace LudoGame.ViewModel
         /// <param name="jeu">Le jeu à ajouter.</param>
         public void AddGame(Jeu jeu)
         {
-            LesElementsDeJeux.Add(jeu);
+            LesJeux.Add(jeu);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace LudoGame.ViewModel
         /// <param name="jeu">Le jeu à ajouter.</param>
         public void RemoveGame(Jeu jeu)
         {
-            LesElementsDeJeux.Remove(jeu);
+            LesJeux.Remove(jeu);
         }
 
         /// <summary>
@@ -138,11 +138,11 @@ namespace LudoGame.ViewModel
             {
                 if(goToDetailsCommand == null)
                 {
-                    goToDetailsCommand = new RelayCommand<ElementJeu>((elementJeu) => 
+                    goToDetailsCommand = new RelayCommand<Jeu>((jeu) => 
                     {
-                        if(elementJeu != null)
+                        if(jeu != null)
                         { 
-                            NavigationViewModel.GoToDetails(elementJeu);
+                            NavigationViewModel.GoToDetails(jeu);
                         }
                     });
                 }
@@ -168,6 +168,23 @@ namespace LudoGame.ViewModel
                 return goToAddGameCommand;
             }
         }
+
+        private ICommand goToStatistiquesCommand;
+        public ICommand GoToStatistiquesCommand
+        {
+            get
+            {
+                if (goToStatistiquesCommand == null)
+                {
+                    goToStatistiquesCommand = new RelayCommand<Object>((obj) =>
+                    {
+                        NavigationViewModel.GoToStatistics(new List<Jeu>(LesJeux));
+                    });
+                }
+                return goToStatistiquesCommand;
+            }
+        }
+
         #endregion
     }
 }
