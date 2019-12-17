@@ -131,7 +131,7 @@ namespace LudoGame.Model
 
         // Evenement permettant de remonter la modification d'une propriété
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /*
         #region Constructeur
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace LudoGame.Model
         }
 
         #endregion
-
+        */
         /// <summary>
         /// Fonction appellée dans les différents mutateurs (set) des propriétés pour informer la vue de la modification 
         /// </summary>

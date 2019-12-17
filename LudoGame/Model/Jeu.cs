@@ -28,7 +28,7 @@ namespace LudoGame.Model
             }
 
         }
-
+        /*
         /// <summary>
         /// Constructeur d'un jeu qui reprend les propriétés de la classe parente. A sa création, la liste d'extensions est initialisée.
         /// </summary>
@@ -37,7 +37,7 @@ namespace LudoGame.Model
         {
             this.lesExtensionsDuJeu = new ObservableCollection<ExtensionJeu>();
         }
-
+        */
         /// <summary>
         /// Ajout d'une nouvelle extension associée au jeu.
         /// </summary>
