@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace LudoGame.Model
 {
     /// <summary>
@@ -17,7 +16,7 @@ namespace LudoGame.Model
     abstract class ElementJeu : INotifyPropertyChanged
     {
         #region Champs et propriétés 
-
+        private int id;
         private string nom;
         private string editeur;
         private string description;
@@ -26,7 +25,17 @@ namespace LudoGame.Model
         private int ageMin;
         private double prix;
         private int dureeMoyenne;
-        private string cheminImage;   
+        private string cheminImage;
+
+        public int Id
+        {
+            get => id;
+            set
+            {
+                id = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public string Nom
         {

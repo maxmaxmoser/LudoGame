@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,13 @@ namespace LudoGame.Model
     /// Classe représentant une extension d'un jeu de société.
     /// Elle hérite de la classe abstraite ElementsJeu et dispose d'un Jeu de société auquel elle est associée.
     /// </summary>
+    [Table("ExtensionJeu")]
     class ExtensionJeu : ElementJeu
     {
         // Jeu associé à l'extension
         private Jeu jeuAssocie;
+
+        [ForeignKey("Id")]
         public Jeu JeuAssocie
         {
             get => jeuAssocie;
