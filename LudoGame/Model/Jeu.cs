@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,18 @@ namespace LudoGame.Model
     [Table("Jeu")]
     class Jeu : ElementJeu
     {
+        private int idJeu;
+        [Key]
+        public int IdJeu
+        {
+            get => idJeu;
+            set
+            {
+                idJeu = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         // Collection d'extensions associées au jeu
         private ObservableCollection<ExtensionJeu> lesExtensionsDuJeu;
         public ObservableCollection<ExtensionJeu> LesExtensionsDuJeu

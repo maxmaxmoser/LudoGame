@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,20 @@ namespace LudoGame.Model
     [Table("ExtensionJeu")]
     class ExtensionJeu : ElementJeu
     {
+
+        
+        private int idExtension;
+        [Key]
+        public int IdExtension
+        {
+            get => idExtension;
+            set
+            {
+                idExtension = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         // Jeu associé à l'extension
         private Jeu jeuAssocie;
 

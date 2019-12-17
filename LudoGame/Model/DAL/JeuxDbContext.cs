@@ -16,6 +16,6 @@ namespace LudoGame.Model.DAL
         public JeuxDbContext() {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=LudoGameDb.db");
+            => options.UseSqlite("Data Source=.\\Database\\LudoGameDb.db");
     }
 }
