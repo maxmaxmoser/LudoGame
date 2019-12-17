@@ -99,7 +99,5 @@ namespace LudoGame.Model
         {
             return this.DureeMoyenne + getDurationAddedByExtensions();
         }
-
-
     }
 }
