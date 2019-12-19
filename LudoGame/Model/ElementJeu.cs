@@ -16,7 +16,6 @@ namespace LudoGame.Model
     abstract class ElementJeu : INotifyPropertyChanged
     {
         #region Champs et propriétés 
-        private int id;
         private string nom;
         private string editeur;
         private string description;
@@ -26,16 +25,6 @@ namespace LudoGame.Model
         private double prix;
         private int dureeMoyenne;
         private string cheminImage;
-
-        public int Id
-        {
-            get => id;
-            set
-            {
-                id = value;
-                NotifyPropertyChanged();
-            }
-        }
 
         public string Nom
         {
@@ -131,8 +120,13 @@ namespace LudoGame.Model
 
         // Evenement permettant de remonter la modification d'une propriété
         public event PropertyChangedEventHandler PropertyChanged;
-        /*
-        #region Constructeur
+        
+        #region Constructeurs
+
+        public ElementJeu()
+        {
+
+        }
 
         /// <summary>
         /// Constructeur initial des propriétés communes des jeux et des extensions.
@@ -160,7 +154,7 @@ namespace LudoGame.Model
         }
 
         #endregion
-        */
+        
         /// <summary>
         /// Fonction appellée dans les différents mutateurs (set) des propriétés pour informer la vue de la modification 
         /// </summary>

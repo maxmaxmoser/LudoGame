@@ -10,8 +10,8 @@ namespace LudoGame.Model.DAL
 {
     class JeuxDbContext : DbContext 
     {
-        public virtual DbSet<Jeu> LesJeux { get; set; }
-        public virtual DbSet<ExtensionJeu> LesExtensions { get; set; }
+        public virtual DbSet<Jeu> Table_Jeu { get; set; }
+        public virtual DbSet<ExtensionJeu> Table_Extension { get; set; }
 
         public JeuxDbContext() {}
 
