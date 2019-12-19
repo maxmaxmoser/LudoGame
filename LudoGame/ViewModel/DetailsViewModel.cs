@@ -115,6 +115,8 @@ namespace LudoGame.ViewModel
                                     break;
                                 }
                         }
+
+                        NavigationViewModel.saveDbChanges();
                     });
                 }
                 return goBackCommand;
@@ -217,7 +219,13 @@ namespace LudoGame.ViewModel
             {
                 if (removeExtensionCommand == null)
                 {
-                    removeExtensionCommand = new RelayCommand<ExtensionJeu>((extension) => ((Jeu)ElementJeuSelectionne).LesExtensionsDuJeu.Remove(extension));
+                    removeExtensionCommand = new RelayCommand<ExtensionJeu>((extension) =>
+                    {
+                        ((Jeu)ElementJeuSelectionne).LesExtensionsDuJeu.Remove(extension);
+                        NavigationViewModel.LudoGameDbContext.Remove(extension);
+                        NavigationViewModel.saveDbChanges();
+                    });
+                                      
                 }
                 return removeExtensionCommand;
             }
@@ -238,7 +246,7 @@ namespace LudoGame.ViewModel
                 {
                     goToAddExtensionCommand = new RelayCommand<Object>((obj) =>
                     {
-                       // NavigationViewModel.GoToAddGame(new ExtensionJeu((Jeu)ElementJeuSelectionne, editeur:ElementJeuSelectionne.Editeur));
+                       NavigationViewModel.GoToAddGameElement(new ExtensionJeu((Jeu)ElementJeuSelectionne, editeur:ElementJeuSelectionne.Editeur));
                     });
                 }
                 return goToAddExtensionCommand;

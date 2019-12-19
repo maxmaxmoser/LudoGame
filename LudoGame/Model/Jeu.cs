@@ -44,6 +44,10 @@ namespace LudoGame.Model
         
         public Jeu() : base()
         {
+        }
+
+        public Jeu(string cheminImage = "/Pictures/Board_picture_dummy.png") : base(cheminImage)
+        {
 
         }
 

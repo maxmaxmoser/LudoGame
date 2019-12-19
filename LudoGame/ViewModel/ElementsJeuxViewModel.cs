@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using LudoGame.Model;
 using LudoGame.View;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
 
 namespace LudoGame.ViewModel
 {
@@ -66,10 +67,12 @@ namespace LudoGame.ViewModel
         public ElementsJeuxViewModel(NavigationViewModel navigationViewModel)
         {
             this.NavigationViewModel = navigationViewModel;
-            LesJeux = new ObservableCollection<Jeu>();
-            /*
-            AddGame(new Jeu("Unlock", "Space Coboys",  1, 6, 10, 32.25, dureeMoyenne:60, cheminImage:"/Pictures/Board_picture_dummy.png"));
-            Jeu carcassone = new Jeu("Carcassone", "Zman Games", 2, 6, 7, 70, dureeMoyenne:35, cheminImage: "/Pictures/Board_picture_dummy.png");
+            LesJeux = NavigationViewModel.LudoGameDbContext.Table_Jeu.Local.ToObservableCollection();
+            NavigationViewModel.LudoGameDbContext.Table_Jeu.Load();
+            NavigationViewModel.LudoGameDbContext.Table_Extension.Load();
+
+            //AddGame(new Jeu("Unlock", "Space Coboys",  1, 6, 10, 32.25, dureeMoyenne:60, cheminImage:"/Pictures/Board_picture_dummy.png"));
+            /*Jeu carcassone = new Jeu("Carcassone", "Zman Games", 2, 6, 7, 70, dureeMoyenne:35, cheminImage: "/Pictures/Board_picture_dummy.png");
             AddExtensionTogame(carcassone, new ExtensionJeu(carcassone, "Carcassone : Auberges & Cathédrales", carcassone.Editeur, 2, 6, 7, 13.50, cheminImage: "/Pictures/Board_picture_dummy.png"));
 
             AddGame(carcassone);
@@ -88,6 +91,7 @@ namespace LudoGame.ViewModel
         public void AddGame(Jeu jeu)
         {
             LesJeux.Add(jeu);
+            NavigationViewModel.saveDbChanges();
         }
 
         /// <summary>
@@ -96,7 +100,9 @@ namespace LudoGame.ViewModel
         /// <param name="jeu">Le jeu à ajouter.</param>
         public void RemoveGame(Jeu jeu)
         {
-            LesJeux.Remove(jeu);
+            //LesJeux.Remove(jeu);
+            NavigationViewModel.LudoGameDbContext.Remove(jeu);
+            NavigationViewModel.saveDbChanges();
         }
 
         /// <summary>
@@ -163,7 +169,7 @@ namespace LudoGame.ViewModel
                 {
                     goToAddGameCommand = new RelayCommand<Object>((obj) =>
                     {
-                        NavigationViewModel.GoToAddGame(new Jeu());
+                        NavigationViewModel.GoToAddGameElement(new Jeu("/Pictures/Board_picture_dummy.png"));
                     });
                 }
                 return goToAddGameCommand;

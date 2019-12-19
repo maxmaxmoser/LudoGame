@@ -48,7 +48,7 @@
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2" Margin="10">
             <Button Content="Ajouter un Jeu" Command="{Binding GoToAddGameCommand}"/>
             <Button Content="Voir les détails" Command="{Binding GoToDetailsCommand}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" IsEnabled="{Binding SelectedItem, ElementName=listeDesElementsDeJeux, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
-            <Button Content="Supprimer le jeu" Command="{Binding RemoveGameCommand}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" Margin="60,0,0,0"/>
+            <Button Content="Supprimer le jeu" Command="{Binding RemoveGameCommand}" CommandParameter="{Binding SelectedItem, ElementName=listeDesElementsDeJeux}" IsEnabled="{Binding SelectedItem, ElementName=listeDesElementsDeJeux, Converter={StaticResource ObjectExistToBooleanConverter}}" Margin="60,0,0,0"/>
         </StackPanel>
     </Grid>
 </Page>

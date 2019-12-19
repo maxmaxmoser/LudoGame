@@ -1,5 +1,7 @@
 ﻿using LudoGame.Model;
+using LudoGame.Model.DAL;
 using LudoGame.View.Pages;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +20,10 @@ namespace LudoGame.ViewModel
     class NavigationViewModel : BaseViewModel
     {
         #region Champs et propriétés
+
+        // Le contexte de base de données
+        public JeuxDbContext LudoGameDbContext = new JeuxDbContext();
+
         // Collection contenant les différentes pages de l'application
         private ObservableCollection<Page> lesPages;
         public ObservableCollection<Page> LesPages
@@ -33,7 +39,7 @@ namespace LudoGame.ViewModel
             }
         }
 
-        // Collection contenant les différent ViewModels de l'application
+        // Collection contenant les différents ViewModels de l'application
         private List<BaseViewModel> lesViewModels;
         public List<BaseViewModel> LesViewModels { get; set; }
 
@@ -132,7 +138,7 @@ namespace LudoGame.ViewModel
         /// Affichage de la page d'ajout d'un nouvel élément de jeu de société (jeu ou extension).
         /// </summary>
         /// <param name="elementJeuSelectionne">L'élément de jeu que l'on souhaite éditer avant un ajout (initialisé par les ViewModels des pages avant l'appel de cette fonction)</param>
-        public void GoToAddGame(ElementJeu elementJeuSelectionne)
+        public void GoToAddGameElement(ElementJeu elementJeuSelectionne)
         {
             DetailsViewModel detailsViewModel = (DetailsViewModel)LesViewModels[(int)EViewModels.DETAILS_VIEWMODEL];
             detailsViewModel.ElementJeuSelectionne = elementJeuSelectionne;
@@ -161,6 +167,10 @@ namespace LudoGame.ViewModel
             ((ElementsJeuxViewModel)LesViewModels[(int)EViewModels.JEU_VIEWMODEL]).AddGame(elementJeuSelectionne);
         }
 
+        public void saveDbChanges()
+        {
+            this.LudoGameDbContext.SaveChanges();
+        }
         #endregion
     }
 

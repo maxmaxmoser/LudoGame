@@ -128,6 +128,11 @@ namespace LudoGame.Model
 
         }
 
+        public ElementJeu(string cheminImage)
+        {
+            this.cheminImage = cheminImage;
+        }
+
         /// <summary>
         /// Constructeur initial des propriétés communes des jeux et des extensions.
         /// 
