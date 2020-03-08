@@ -78,14 +78,16 @@
         
         <!-- Durée moyenne -->
         <WrapPanel Grid.Row="6" HorizontalAlignment="Left" Margin="40,10,0,0" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
-            <TextBlock Text="Durée moyenne : "/>
+            <TextBlock Text="Durée : "/>
             <TextBox Text="{Binding DureeMoyenneElementJeu, ElementName=ucBoardGameAttributes}" Width="40"/>
+            <TextBlock Text=" minutes "/>
         </WrapPanel>
 
         <!--Prix -->
         <WrapPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,40,0" IsEnabled="{Binding ModificationEstAutorisee, ElementName=ucBoardGameAttributes}">
             <TextBlock Text="Prix : "/>
             <TextBox Text="{Binding PrixElementJeu, ElementName=ucBoardGameAttributes}" Width="40"/>
+            <TextBlock Text=" €"/>
         </WrapPanel>
     </Grid>
 </UserControl>
