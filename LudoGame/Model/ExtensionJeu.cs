@@ -30,9 +30,10 @@ namespace LudoGame.Model
             }
         }
 
-        // Jeu associé à l'extension
+        // Jeu associé à l'extension 
         private Jeu jeuAssocie;
 
+        // Tag utilisé par le framework Entity
         [ForeignKey("IdJeu")]
         public Jeu JeuAssocie
         {

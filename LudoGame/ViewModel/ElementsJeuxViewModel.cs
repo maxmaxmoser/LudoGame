@@ -91,7 +91,7 @@ namespace LudoGame.ViewModel
         public void AddGame(Jeu jeu)
         {
             LesJeux.Add(jeu);
-            NavigationViewModel.saveDbChanges();
+            NavigationViewModel.SaveDbChanges();
         }
 
         /// <summary>
@@ -100,9 +100,8 @@ namespace LudoGame.ViewModel
         /// <param name="jeu">Le jeu à ajouter.</param>
         public void RemoveGame(Jeu jeu)
         {
-            //LesJeux.Remove(jeu);
             NavigationViewModel.LudoGameDbContext.Remove(jeu);
-            NavigationViewModel.saveDbChanges();
+            NavigationViewModel.SaveDbChanges();
         }
 
         /// <summary>

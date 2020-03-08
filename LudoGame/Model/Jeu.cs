@@ -13,6 +13,7 @@ namespace LudoGame.Model
     /// Classe représentant un jeu de société.
     /// Elle hérite de la classe abstraite ElementsJeu et dispose d'une liste d'extensions qui lui appartiennent.
     /// </summary>
+    // Tag utilisé par le framework Entity
     [Table("Jeu")]
     class Jeu : ElementJeu
     {

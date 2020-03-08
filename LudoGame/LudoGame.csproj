@@ -170,9 +170,9 @@
     </ApplicationDefinition>
     <Compile Include="Converter\BooleanToCollapsedVisibilityConverter.cs" />
     <Compile Include="Converter\ObjectExistToBooleanConverter.cs" />
-    <Compile Include="Migrations\20191219074417_InitialCreate.cs" />
-    <Compile Include="Migrations\20191219074417_InitialCreate.designer.cs">
-      <DependentUpon>20191219074417_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20200308103426_InitialCreate.cs" />
+    <Compile Include="Migrations\20200308103426_InitialCreate.designer.cs">
+      <DependentUpon>20200308103426_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\JeuxDbContextModelSnapshot.cs" />
     <Compile Include="Model\DAL\JeuxDbContext.cs" />

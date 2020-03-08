@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LudoGame.Migrations
 {
     [DbContext(typeof(JeuxDbContext))]
-    [Migration("20191219074417_InitialCreate")]
+    [Migration("20200308101445_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,7 @@ namespace LudoGame.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("IdJeu")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("NbJoueursMax")
@@ -103,7 +104,9 @@ namespace LudoGame.Migrations
                 {
                     b.HasOne("LudoGame.Model.Jeu", "JeuAssocie")
                         .WithMany("LesExtensionsDuJeu")
-                        .HasForeignKey("IdJeu");
+                        .HasForeignKey("IdJeu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

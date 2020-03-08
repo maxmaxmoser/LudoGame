@@ -42,7 +42,7 @@ namespace LudoGame.Migrations
                     Prix = table.Column<double>(nullable: false),
                     DureeMoyenne = table.Column<int>(nullable: false),
                     CheminImage = table.Column<string>(nullable: true),
-                    IdJeu = table.Column<int>(nullable: true)
+                    IdJeu = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,7 +52,7 @@ namespace LudoGame.Migrations
                         column: x => x.IdJeu,
                         principalTable: "Jeu",
                         principalColumn: "IdJeu",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

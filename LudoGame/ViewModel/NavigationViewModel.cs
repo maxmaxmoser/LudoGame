@@ -167,7 +167,10 @@ namespace LudoGame.ViewModel
             ((ElementsJeuxViewModel)LesViewModels[(int)EViewModels.JEU_VIEWMODEL]).AddGame(elementJeuSelectionne);
         }
 
-        public void saveDbChanges()
+        /// <summary>
+        /// Enregistrement des modifications sur la BDD.
+        /// </summary>
+        public void SaveDbChanges()
         {
             this.LudoGameDbContext.SaveChanges();
         }
