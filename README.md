@@ -20,3 +20,8 @@ Mon projet est actuellement en stade de prototype. Je travaille occasionnellemen
 ## Apperçu visuel
 
 Le dossier [Captures](./Captures) contient un aperçu des interfaces actuelles. 
+
+## Prérequis
+
+- Code compilé et testé sous visual studio community 2019
+- Installer le package Nuget "Microsoft.EntityFrameworkCore.Sqlite.Core"
