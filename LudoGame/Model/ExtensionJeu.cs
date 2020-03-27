@@ -14,7 +14,7 @@ namespace LudoGame.Model
     /// Elle hérite de la classe abstraite ElementsJeu et dispose d'un Jeu de société auquel elle est associée.
     /// </summary>
     [Table("Extension")]
-    class ExtensionJeu : ElementJeu
+    public class ExtensionJeu : ElementJeu
     {
 
         

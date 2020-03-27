@@ -27,7 +27,7 @@
                                        DescriptionElementJeu="{Binding ElementJeuSelectionne.Description, Mode=TwoWay}" AgeMin="{Binding ElementJeuSelectionne.AgeMin, Mode=TwoWay}" 
                                        NbJoueursMin="{Binding ElementJeuSelectionne.NbJoueursMin, Mode=TwoWay}" NbJoueursMax="{Binding ElementJeuSelectionne.NbJoueursMax, Mode=TwoWay}"
                                        DureeMoyenneElementJeu="{Binding ElementJeuSelectionne.DureeMoyenne, Mode=TwoWay}" PickImageCommand="{Binding PickImageCommand}"
-                                       ModificationEstAutorisee="true"/>
+                                       ModificationEstAutorisee="True"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

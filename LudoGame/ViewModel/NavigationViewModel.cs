@@ -17,7 +17,7 @@ namespace LudoGame.ViewModel
     /// - Il initialise les pages et les différents ViewModel tout en les reliants entre eux.
     /// - Chaque ViewModel dispose d'une propriété NavigationViewModel afin d'appeler ses fonctions.
     /// </remarks>
-    class NavigationViewModel : BaseViewModel
+    public class NavigationViewModel : BaseViewModel
     {
         #region Champs et propriétés
 
@@ -39,8 +39,6 @@ namespace LudoGame.ViewModel
             }
         }
 
-        // Collection contenant les différents ViewModels de l'application
-        private List<BaseViewModel> lesViewModels;
         public List<BaseViewModel> LesViewModels { get; set; }
 
         // Variable permettant d'indiquer à la vue la page courante (qui doit donc être affichée dans la fenêtre de l'application
@@ -69,10 +67,12 @@ namespace LudoGame.ViewModel
         /// </summary>
         public NavigationViewModel()
         {
-            LesViewModels = new List<BaseViewModel>();
-            LesViewModels.Add(new ElementsJeuxViewModel(this));
-            LesViewModels.Add(new DetailsViewModel(this));
-            LesViewModels.Add(new StatistiquesViewModel(this));
+            LesViewModels = new List<BaseViewModel>
+            {
+                new ElementsJeuxViewModel(this),
+                new DetailsViewModel(this),
+                new StatistiquesViewModel(this)
+            };
 
             LesPages = new ObservableCollection<Page>();
 
@@ -154,7 +154,7 @@ namespace LudoGame.ViewModel
         {
             StatistiquesViewModel statistiquesViewModel = (StatistiquesViewModel)LesViewModels[(int)EViewModels.STATISTIQUES_VIEWMODEL];
             statistiquesViewModel.LesJeux = lesJeux;
-            statistiquesViewModel.loadStatistics();
+            statistiquesViewModel.LoadStatistics();
             PageCourante = LesPages[(int)ENomsPage.STATISTIQUES_PAGES];
         }
 

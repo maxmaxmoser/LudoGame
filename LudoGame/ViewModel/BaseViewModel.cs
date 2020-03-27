@@ -11,7 +11,7 @@ namespace LudoGame.ViewModel
     /// <summary>
     /// Classe abstraite dotant tous les ViewModel qui en hérite des fonctionnalités permettant d'informer la vue des modifications (INotifyPropertyChanged).
     /// </summary>
-    abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

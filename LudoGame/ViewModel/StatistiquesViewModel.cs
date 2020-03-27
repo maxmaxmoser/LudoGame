@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace LudoGame.ViewModel
 {
-    class StatistiquesViewModel : BaseViewModel
+    public class StatistiquesViewModel : BaseViewModel
     {
 
         #region Champs et propriétés
@@ -114,6 +114,14 @@ namespace LudoGame.ViewModel
         #region Constructeur
 
         /// <summary>
+        /// Constructeur vierge utilisé pour les tests unitaires
+        /// </summary>
+        public StatistiquesViewModel()
+        {
+            navigationViewModel = null;
+        }
+
+        /// <summary>
         /// Initialisation du viewModel.
         /// </summary>
         /// <remarks>
@@ -135,24 +143,24 @@ namespace LudoGame.ViewModel
         /// <remarks>
         /// Appellée depuis le NavigationViewModel avant de passer à la page des statistiques.
         /// </remarks>
-        public void loadStatistics()
+        public void LoadStatistics()
         {
             this.NbJeux = LesJeux.Count;
-            this.NbExtensions = getTotalNbExtensions();
-            this.CoutTotal = getTotalPrice();
-            this.DureeMoyenneTotale = getTotalAvgDuration();
+            this.NbExtensions = GetTotalNbExtensions();
+            this.CoutTotal = GetTotalPrice();
+            this.DureeMoyenneTotale = GetTotalAvgDuration();
         }
 
         /// <summary>
         /// Fonction qui renvoie le nombre total d'extensions.
         /// </summary>
-        public int getTotalNbExtensions()
+        public int GetTotalNbExtensions()
         {
             int totExtensions = 0;
 
             foreach(Jeu jeu in LesJeux)
             {
-                totExtensions += jeu.getNumberOfExtensions();
+                totExtensions += jeu.GetNumberOfExtensions();
             }
             return totExtensions;
         }
@@ -160,13 +168,13 @@ namespace LudoGame.ViewModel
         /// <summary>
         /// Fonction qui renvoie le prix total des jeux.
         /// </summary>
-        public double getTotalPrice()
+        public double GetTotalPrice()
         {
             double totPrix = 0;
 
             foreach (Jeu jeu in LesJeux)
             {
-                totPrix += jeu.getPricewithAddons();
+                totPrix += jeu.GetPricewithAddons();
             }
             return totPrix;
         }
@@ -174,13 +182,13 @@ namespace LudoGame.ViewModel
         /// <summary>
         /// Fonction qui renvoie la durée moyenne totale en minutes.
         /// </summary>
-        public int getTotalAvgDuration()
+        public int GetTotalAvgDuration()
         {
             int totDuration = 0;
 
             foreach (Jeu jeu in LesJeux)
             {
-                totDuration += jeu.getDurationwithAddons();
+                totDuration += jeu.GetDurationwithAddons();
             }
             return totDuration;
         }

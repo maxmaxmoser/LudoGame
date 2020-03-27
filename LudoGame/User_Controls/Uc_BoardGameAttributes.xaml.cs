@@ -177,9 +177,9 @@ namespace LudoGame.User_Controls
 
         #region ModificationEstAutorisee DP
 
-        public string ModificationEstAutorisee
+        public bool ModificationEstAutorisee
         {
-            get { return (string)GetValue(ModificationEstAutoriseeProperty); }
+            get { return (bool)GetValue(ModificationEstAutoriseeProperty); }
             set { SetValue(ModificationEstAutoriseeProperty, value); }
         }
 
