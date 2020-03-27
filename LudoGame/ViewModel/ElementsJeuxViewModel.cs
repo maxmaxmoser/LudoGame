@@ -70,14 +70,6 @@ namespace LudoGame.ViewModel
             LesJeux = NavigationViewModel.LudoGameDbContext.Table_Jeu.Local.ToObservableCollection();
             NavigationViewModel.LudoGameDbContext.Table_Jeu.Load();
             NavigationViewModel.LudoGameDbContext.Table_Extension.Load();
-
-            //AddGame(new Jeu("Unlock", "Space Coboys",  1, 6, 10, 32.25, dureeMoyenne:60, cheminImage:"/Pictures/Board_picture_dummy.png"));
-            /*Jeu carcassone = new Jeu("Carcassone", "Zman Games", 2, 6, 7, 70, dureeMoyenne:35, cheminImage: "/Pictures/Board_picture_dummy.png");
-            AddExtensionTogame(carcassone, new ExtensionJeu(carcassone, "Carcassone : Auberges & Cathédrales", carcassone.Editeur, 2, 6, 7, 13.50, cheminImage: "/Pictures/Board_picture_dummy.png"));
-
-            AddGame(carcassone);
-            AddGame(new Jeu("Smallworld", "Days of wonder", 1, 5, 10, 80, 90,"Un jeu de conquêtes dans un univer fantastique", "/Pictures/Board_picture_dummy.png"));
-            */
         }
 
         #endregion
@@ -111,7 +103,7 @@ namespace LudoGame.ViewModel
         /// <param name="extensionJeu">L'extension à ajouter.</param>
         public void AddExtensionTogame(Jeu jeu, ExtensionJeu extensionJeu)
         {
-            jeu.addExtension(extensionJeu);
+            jeu.AddExtension(extensionJeu);
         }
 
         #endregion

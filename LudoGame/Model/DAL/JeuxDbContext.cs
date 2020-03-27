@@ -13,7 +13,7 @@ namespace LudoGame.Model.DAL
     ///      
     /// Cette classe implémente l'interface DbContext qui provient du framework Entity.
     /// </summary>
-    class JeuxDbContext : DbContext 
+    public class JeuxDbContext : DbContext 
     {
 
         // Déclaration du DBset qui représentera la table Jeu.

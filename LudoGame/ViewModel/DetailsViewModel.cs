@@ -198,7 +198,7 @@ namespace LudoGame.ViewModel
                             case "ExtensionJeu":
                             {
                                 ExtensionJeu extensionJeu = (ExtensionJeu)elementJeu;
-                                extensionJeu.JeuAssocie.addExtension(extensionJeu);
+                                extensionJeu.JeuAssocie.AddExtension(extensionJeu);
                                 NavigationViewModel.SaveDbChanges();   // Sauvegarde de l'extension ajoutée.
                                 NavigationViewModel.GoToDetails(extensionJeu.JeuAssocie);
                                 break;

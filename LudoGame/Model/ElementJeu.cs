@@ -13,7 +13,7 @@ namespace LudoGame.Model
     ///      
     /// Implémentente l'interface INotifyPropertyChanged, afin d'informer la vue des changements de valeurs(par le biais des ViewModel).
     /// </summary>
-    abstract class ElementJeu : INotifyPropertyChanged
+    public abstract class ElementJeu : INotifyPropertyChanged
     {
         #region Champs et propriétés 
         private string nom;

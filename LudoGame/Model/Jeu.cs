@@ -15,7 +15,7 @@ namespace LudoGame.Model
     /// </summary>
     // Tag utilisé par le framework Entity
     [Table("Jeu")]
-    class Jeu : ElementJeu
+    public class Jeu : ElementJeu
     {
         private int idJeu;
         [Key]
@@ -43,10 +43,17 @@ namespace LudoGame.Model
 
         }
         
+        /// <summary>
+        /// Constructeur vierge.
+        /// </summary>
         public Jeu() : base()
         {
         }
 
+        /// <summary>
+        /// Constructeur prenant uniquement le chemin de l'Image en paramètre.
+        /// </summary>
+        /// <param name="cheminImage"></param>
         public Jeu(string cheminImage = "/Pictures/Board_picture_dummy.png") : base(cheminImage)
         {
 
@@ -64,7 +71,7 @@ namespace LudoGame.Model
         /// Ajout d'une nouvelle extension associée au jeu.
         /// </summary>
         /// <param name="extension">L'instance d'extension à y ajouter.</param>
-        public void addExtension(ExtensionJeu extension)
+        public void AddExtension(ExtensionJeu extension)
         {
             LesExtensionsDuJeu.Add(extension);
         }
@@ -72,7 +79,7 @@ namespace LudoGame.Model
         /// <summary>
         /// Obtention du nombre d'extensions ratachées au jeu.
         /// </summary>
-        public int getNumberOfExtensions()
+        public int GetNumberOfExtensions()
         {
             return this.LesExtensionsDuJeu.Count;
         }
@@ -81,7 +88,7 @@ namespace LudoGame.Model
         /// <summary>
         /// Obtention du prix ajouté par les extensions du jeu.
         /// </summary>
-        private double getPriceAddedByExtensions()
+        private double GetPriceAddedByExtensions()
         {
             double prixExtensions = 0;
 
@@ -95,15 +102,15 @@ namespace LudoGame.Model
         /// <summary>
         /// Obtention du prix total d'un jeu et de ses extensions.
         /// </summary>
-        public double getPricewithAddons()
+        public double GetPricewithAddons()
         {
-            return this.Prix + getPriceAddedByExtensions();
+            return this.Prix + GetPriceAddedByExtensions();
         }
 
         /// <summary>
         /// Obtention de la durée ajoutée par les extensions du jeu en minutes.
         /// </summary>
-        private int getDurationAddedByExtensions()
+        private int GetDurationAddedByExtensions()
         {
             int dureeExtensions = 0;
 
@@ -117,9 +124,9 @@ namespace LudoGame.Model
         /// <summary>
         /// Obtention de la durée moyenne totale d'un jeu avec ses extensions en minutes.
         /// </summary>
-        public int getDurationwithAddons()
+        public int GetDurationwithAddons()
         {
-            return this.DureeMoyenne + getDurationAddedByExtensions();
+            return this.DureeMoyenne + GetDurationAddedByExtensions();
         }
     }
 }
